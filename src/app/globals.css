@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* White-label defaults as RGB channel triplets (overridden at runtime by
+     ThemeProvider). Triplet form lets Tailwind apply opacity modifiers. */
+  --brand-primary: 79 70 229; /* #4f46e5 */
+  --brand-secondary: 99 102 241; /* #6366f1 */
+  --brand-fg: 255 255 255; /* text on brand */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  @apply bg-slate-50 text-slate-900 antialiased;
+  font-family: var(--font-sans);
+}
+
+* {
+  scrollbar-width: thin;
+}

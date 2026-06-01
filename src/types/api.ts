@@ -6,7 +6,6 @@ import type {
   AgentStatus,
   ChannelStatus,
   ChannelType,
-  ConnectMethod,
   ConversationState,
   DocumentStatus,
   MessageDirection,
@@ -159,7 +158,6 @@ export interface CreateChannelRequest {
 }
 
 export interface ConnectRequest {
-  method?: ConnectMethod;
   number?: string;
 }
 

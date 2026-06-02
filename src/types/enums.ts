@@ -91,6 +91,7 @@ export type SourceType = (typeof SourceType)[keyof typeof SourceType];
 export const RealtimeEventType = {
   Message: "message",
   State: "state",
+  QRUpdate: "qr_update",
 } as const;
 export type RealtimeEventType =
   (typeof RealtimeEventType)[keyof typeof RealtimeEventType];

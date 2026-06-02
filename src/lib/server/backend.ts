@@ -48,6 +48,10 @@ async function tryRefresh(): Promise<string | null> {
 // Builds a NextResponse mirroring an upstream backend Response (status, body,
 // content-type). Used by the generic proxy route.
 async function mirror(res: Response): Promise<NextResponse> {
+  // HTTP spec (and Node.js 18+) forbids a body on null-body status codes.
+  if (res.status === 204 || res.status === 304 || res.status === 101 || res.status === 103) {
+    return new NextResponse(null, { status: res.status });
+  }
   const contentType = res.headers.get("content-type") ?? "";
   const buf = await res.arrayBuffer();
   const out = new NextResponse(buf, { status: res.status });

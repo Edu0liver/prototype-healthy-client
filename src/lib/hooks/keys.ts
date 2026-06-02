@@ -12,6 +12,7 @@ export const qk = {
   agentKbs: (id: string) => ["agents", id, "knowledge-bases"] as const,
   channels: ["channels"] as const,
   channel: (id: string) => ["channels", id] as const,
+  channelState: (id: string) => ["channels", id, "state"] as const,
   automations: ["automations"] as const,
   knowledgeBases: ["knowledge-bases"] as const,
   knowledgeBase: (id: string) => ["knowledge-bases", id] as const,

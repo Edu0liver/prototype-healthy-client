@@ -43,17 +43,17 @@ function LoginForm() {
       <CardBody>
         <h2 className="mb-4 text-lg font-semibold">Entrar</h2>
         <form onSubmit={onSubmit} className="space-y-4">
-          <Field label="E-mail">
+          <Field label="Email">
             <Input
               type="email"
               autoComplete="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="voce@empresa.com"
+              placeholder="email@email.com"
             />
           </Field>
-          <Field label="Palavra-passe">
+          <Field label="Senha">
             <Input
               type="password"
               autoComplete="current-password"

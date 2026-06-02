@@ -4,13 +4,10 @@ import { Sidebar } from "@/components/layout/Sidebar";
 import { Topbar } from "@/components/layout/Topbar";
 import { Loading } from "@/components/ui/states";
 import { useAuth } from "@/lib/auth/AuthContext";
+import { RealtimeProvider } from "@/lib/realtime/RealtimeContext";
 import { useRealtime } from "@/lib/hooks/useRealtime";
 
-export default function DashboardLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+function DashboardInner({ children }: { children: React.ReactNode }) {
   const { loading, user } = useAuth();
   const { status } = useRealtime();
 
@@ -24,5 +21,17 @@ export default function DashboardLayout({
         </main>
       </div>
     </div>
+  );
+}
+
+export default function DashboardLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <RealtimeProvider>
+      <DashboardInner>{children}</DashboardInner>
+    </RealtimeProvider>
   );
 }

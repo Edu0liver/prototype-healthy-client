@@ -1,19 +1,18 @@
 "use client";
 
 import { useQueryClient } from "@tanstack/react-query";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
-import { connectRealtime } from "@/lib/api/ws";
+import { useRealtimeCtx } from "@/lib/realtime/RealtimeContext";
 import type { RealtimeEvent } from "@/types/api";
 
 import { qk } from "./keys";
 
-// Subscribes to the tenant realtime stream and invalidates the relevant
-// queries so the UI reflects new messages and handover state transitions live
-// (RF-LOG-01, RF-CH-04). Mounted once near the app root.
+// Subscribes to the shared realtime stream and invalidates queries on events
+// (RF-LOG-01, RF-CH-04). Requires RealtimeProvider in the tree.
 export function useRealtime() {
   const qc = useQueryClient();
-  const [status, setStatus] = useState<"open" | "closed" | "error">("closed");
+  const { subscribe, status } = useRealtimeCtx();
   const cb = useRef<(ev: RealtimeEvent) => void>();
 
   cb.current = (ev: RealtimeEvent) => {
@@ -28,12 +27,8 @@ export function useRealtime() {
   };
 
   useEffect(() => {
-    const handle = connectRealtime(
-      (ev) => cb.current?.(ev),
-      (s) => setStatus(s),
-    );
-    return () => handle.close();
-  }, []);
+    return subscribe((ev) => cb.current?.(ev));
+  }, [subscribe]);
 
   return { status };
 }

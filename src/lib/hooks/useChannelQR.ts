@@ -2,25 +2,22 @@
 
 import { useEffect, useState } from "react";
 
-import { connectRealtime } from "@/lib/api/ws";
+import { useRealtimeCtx } from "@/lib/realtime/RealtimeContext";
 
 // Listens for qr_update realtime events scoped to a specific channel.
-// Returns the latest QR code string; clears automatically on unmount.
+// Reuses the shared WS connection from RealtimeProvider (no extra socket).
 export function useChannelQR(channelId: string) {
   const [qr, setQr] = useState<string | null>(null);
+  const { subscribe } = useRealtimeCtx();
 
   useEffect(() => {
-    const handle = connectRealtime((ev) => {
-      if (
-        ev.type === "qr_update" &&
-        ev.payload?.["channel_id"] === channelId
-      ) {
+    return subscribe((ev) => {
+      if (ev.type === "qr_update" && ev.payload?.["channel_id"] === channelId) {
         const code = ev.payload["qr_code"] as string | undefined;
         if (code) setQr(code);
       }
     });
-    return () => handle.close();
-  }, [channelId]);
+  }, [channelId, subscribe]);
 
   return { qr, setQr, clearQr: () => setQr(null) };
 }

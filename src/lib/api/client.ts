@@ -32,10 +32,13 @@ async function handle<T>(res: Response): Promise<T> {
   const data = await parse(res);
   if (!res.ok) {
     const err = (data ?? {}) as ApiError;
-    // A 401 from the proxy means the session is gone/unrefreshable.
+    // A 401 from the proxy means the session is gone/unrefreshable. Only bounce
+    // to /login from the protected dashboard area — public pages (landing,
+    // /login, /signup) probe /auth/me and expect a 401 when logged out, which
+    // must NOT trigger a redirect.
     if (res.status === 401 && typeof window !== "undefined") {
       const here = window.location.pathname;
-      if (!here.startsWith("/login")) {
+      if (here.startsWith("/dashboard")) {
         window.location.href = `/login?next=${encodeURIComponent(here)}`;
       }
     }

@@ -3,16 +3,16 @@ import { authedTest as test, expect } from "./fixtures";
 // Walks the entire authenticated app via the sidebar, asserting each page
 // mounts, then logs out. This is the "traverse the whole app" smoke path.
 const PAGES: [string, string][] = [
-  ["Conversas", "/conversations"],
-  ["Canais", "/channels"],
-  ["Agentes", "/agents"],
-  ["Conhecimento", "/knowledge"],
-  ["Automações", "/automations"],
-  ["Definições", "/settings"],
+  ["Conversas", "/dashboard/conversations"],
+  ["Canais", "/dashboard/channels"],
+  ["Agentes", "/dashboard/agents"],
+  ["Conhecimento", "/dashboard/knowledge"],
+  ["Automações", "/dashboard/automations"],
+  ["Definições", "/dashboard/settings"],
 ];
 
 test("navigates every section from the sidebar and logs out", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("/dashboard");
   await expect(page.getByText("Olá, Admin Acme", { exact: false })).toBeVisible();
 
   // Scope link clicks to the sidebar — the overview also has stat cards linking
@@ -33,7 +33,7 @@ test("unauthenticated deep-link redirects to login", async ({ browser }) => {
   // Fresh context with NO cookie — middleware must bounce to /login.
   const ctx = await browser.newContext();
   const page = await ctx.newPage();
-  await page.goto("/agents");
+  await page.goto("/dashboard/agents");
   await expect(page).toHaveURL(/\/login/);
   await ctx.close();
 });

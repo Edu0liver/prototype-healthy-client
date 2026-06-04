@@ -24,6 +24,14 @@ export function usePlans() {
   return useQuery({ queryKey: qk.plans, queryFn: billingService.listPlans });
 }
 
+// usePublicPlans powers the marketing landing pricing (no auth required).
+export function usePublicPlans() {
+  return useQuery({
+    queryKey: qk.publicPlans,
+    queryFn: billingService.listPublicPlans,
+  });
+}
+
 // useCheckout starts a Stripe Checkout Session and redirects the browser to the
 // hosted payment page on success.
 export function useCheckout() {

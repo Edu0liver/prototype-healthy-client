@@ -63,19 +63,19 @@ export default function OverviewPage() {
               icon={<Radio size={20} />}
               label="Canais"
               value={channels.data?.length ?? "—"}
-              href="/channels"
+              href="/dashboard/channels"
             />
             <Stat
               icon={<Bot size={20} />}
               label="Agentes"
               value={agents.data?.length ?? "—"}
-              href="/agents"
+              href="/dashboard/agents"
             />
             <Stat
               icon={<Library size={20} />}
               label="Bases de conhecimento"
               value={kbs.data?.length ?? "—"}
-              href="/knowledge"
+              href="/dashboard/knowledge"
             />
           </>
         )}
@@ -83,7 +83,7 @@ export default function OverviewPage() {
           icon={<MessagesSquare size={20} />}
           label="Conversas"
           value={convs.data?.length ?? "—"}
-          href="/conversations"
+          href="/dashboard/conversations"
         />
       </div>
 

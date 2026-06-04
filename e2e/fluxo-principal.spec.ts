@@ -15,7 +15,7 @@ test.describe("Login", () => {
     await page.getByPlaceholder("••••••••").fill("secret123");
     await page.getByRole("button", { name: /entrar/i }).click();
 
-    await expect(page).toHaveURL("http://localhost:3000/");
+    await expect(page).toHaveURL("http://localhost:3000/dashboard");
     await expect(page.getByText(`Olá, ${E2E_USER.name}`, { exact: false })).toBeVisible();
     await expect(page.getByRole("link", { name: "Visão geral" })).toBeVisible();
   });
@@ -52,6 +52,6 @@ test.describe("Signup", () => {
     await page.locator('input[type="password"]').fill("secret12345");
     await page.getByRole("button", { name: /criar conta/i }).click();
 
-    await expect(page).toHaveURL("http://localhost:3000/");
+    await expect(page).toHaveURL("http://localhost:3000/dashboard");
   });
 });

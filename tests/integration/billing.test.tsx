@@ -1,14 +1,14 @@
 import { screen, waitFor } from "@testing-library/react";
 import { http, HttpResponse } from "msw";
 
-import BillingPage from "@/app/(dashboard)/billing/page";
+import BillingPage from "@/app/dashboard/billing/page";
 import { server } from "../mocks/server";
 import { renderWithProviders } from "../utils/renderWithProviders";
 
 jest.mock("next/navigation", () => ({
   useRouter: () => ({ replace: jest.fn(), push: jest.fn() }),
   useSearchParams: () => ({ get: () => null }),
-  usePathname: () => "/billing",
+  usePathname: () => "/dashboard/billing",
 }));
 
 const subscription = {
@@ -40,7 +40,7 @@ const plans = {
 };
 
 describe("Billing page", () => {
-  beforeEach(() => window.history.pushState({}, "", "/billing"));
+  beforeEach(() => window.history.pushState({}, "", "/dashboard/billing"));
 
   it("renders subscription, usage and plans", async () => {
     server.use(

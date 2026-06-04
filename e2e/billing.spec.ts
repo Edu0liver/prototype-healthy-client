@@ -2,7 +2,7 @@ import { authedTest as test, expect } from "./fixtures";
 
 test.describe("Billing", () => {
   test("shows subscription, usage and plan catalogue", async ({ page }) => {
-    await page.goto("/billing");
+    await page.goto("/dashboard/billing");
 
     await expect(page.getByRole("heading", { name: "Faturação" })).toBeVisible();
 
@@ -21,7 +21,7 @@ test.describe("Billing", () => {
   });
 
   test("starts checkout and redirects to the gateway URL", async ({ page }) => {
-    await page.goto("/billing");
+    await page.goto("/dashboard/billing");
 
     // Subscribe to the Starter plan (purchasable, not current).
     const starterCard = page

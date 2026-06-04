@@ -28,7 +28,7 @@ function LoginForm() {
     try {
       await authService.login({ email, password });
       refresh();
-      router.replace(params.get("next") || "/");
+      router.replace(params.get("next") || "/dashboard");
     } catch (err) {
       const msg =
         err instanceof ApiClientError ? err.message : "Falha no login";

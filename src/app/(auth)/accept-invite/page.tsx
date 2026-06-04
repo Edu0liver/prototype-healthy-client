@@ -29,7 +29,7 @@ function AcceptInviteForm() {
       toast.success("Convite aceite!");
       if (res.authenticated) {
         refresh();
-        router.replace("/");
+        router.replace("/dashboard");
       } else {
         router.replace("/login");
       }

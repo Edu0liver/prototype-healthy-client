@@ -24,4 +24,5 @@ export const qk = {
   subscription: ["billing", "subscription"] as const,
   usage: ["billing", "usage"] as const,
   plans: ["billing", "plans"] as const,
+  publicPlans: ["billing", "plans", "public"] as const,
 };

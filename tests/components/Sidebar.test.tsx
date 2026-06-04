@@ -7,7 +7,7 @@ import type { User } from "@/types/api";
 // Sidebar depends on the auth state and the current path. Mock both so the test
 // focuses on the role-based rendering logic (RF-USR-02).
 jest.mock("next/navigation", () => ({
-  usePathname: () => "/",
+  usePathname: () => "/dashboard",
 }));
 
 jest.mock("@/lib/auth/AuthContext", () => ({
@@ -66,6 +66,6 @@ describe("Sidebar", () => {
     render(<Sidebar />);
 
     const overview = screen.getByText("Visão geral").closest("a");
-    expect(overview).toHaveAttribute("href", "/");
+    expect(overview).toHaveAttribute("href", "/dashboard");
   });
 });

@@ -1,14 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardBody } from "@/components/ui/card";
 import { Field, Input } from "@/components/ui/field";
 import { useToast } from "@/components/ui/toast";
 import { authService } from "@/lib/api/auth";
+import { billingService } from "@/lib/api/billing";
 import { ApiClientError } from "@/lib/api/client";
 import { useAuth } from "@/lib/auth/AuthContext";
 
@@ -21,10 +22,15 @@ function slugify(s: string) {
     .replace(/(^-|-$)/g, "");
 }
 
-export default function SignupPage() {
+function SignupForm() {
   const router = useRouter();
+  const params = useSearchParams();
   const toast = useToast();
   const { refresh } = useAuth();
+
+  // Funnel B: a `?plan=<code>` arriving from the landing pricing means the user
+  // wants to subscribe immediately after creating the account.
+  const plan = params.get("plan");
 
   const [companyName, setCompanyName] = useState("");
   const [slug, setSlug] = useState("");
@@ -51,7 +57,27 @@ export default function SignupPage() {
         name,
       });
       refresh();
-      router.replace("/");
+
+      // Funnel B: jump straight to Stripe checkout for the chosen plan. The
+      // signup already set the session cookie, so the proxied call is authed.
+      if (plan) {
+        try {
+          const { checkout_url } = await billingService.checkout({
+            plan_code: plan,
+          });
+          window.location.href = checkout_url;
+          return;
+        } catch (err) {
+          toast.error(
+            err instanceof ApiClientError
+              ? err.message
+              : "Conta criada, mas não foi possível iniciar o checkout.",
+          );
+          router.replace("/dashboard/billing");
+          return;
+        }
+      }
+      router.replace("/dashboard");
     } catch (err) {
       const msg =
         err instanceof ApiClientError ? err.message : "Falha no registo";
@@ -64,7 +90,13 @@ export default function SignupPage() {
   return (
     <Card>
       <CardBody>
-        <h2 className="mb-4 text-lg font-semibold">Criar empresa</h2>
+        <h2 className="mb-1 text-lg font-semibold">Criar empresa</h2>
+        {plan && (
+          <p className="mb-3 rounded-lg bg-brand/10 px-3 py-2 text-sm text-brand">
+            Plano selecionado: <strong className="capitalize">{plan}</strong> — após
+            criar a conta segue para o pagamento.
+          </p>
+        )}
         <form onSubmit={onSubmit} className="space-y-4">
           <Field label="Nome da empresa">
             <Input
@@ -107,7 +139,7 @@ export default function SignupPage() {
             />
           </Field>
           <Button type="submit" loading={loading} className="w-full">
-            Criar conta
+            {plan ? "Criar conta e assinar" : "Criar conta"}
           </Button>
         </form>
         <p className="mt-4 text-center text-sm text-slate-500">
@@ -118,5 +150,13 @@ export default function SignupPage() {
         </p>
       </CardBody>
     </Card>
+  );
+}
+
+export default function SignupPage() {
+  return (
+    <Suspense fallback={null}>
+      <SignupForm />
+    </Suspense>
   );
 }

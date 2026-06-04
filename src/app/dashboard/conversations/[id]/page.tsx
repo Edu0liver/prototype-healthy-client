@@ -66,7 +66,7 @@ export default function ConversationDetailPage() {
   return (
     <div className="flex h-[calc(100vh-7rem)] flex-col">
       <Link
-        href="/conversations"
+        href="/dashboard/conversations"
         className="mb-3 inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-800"
       >
         <ArrowLeft size={16} /> Conversas

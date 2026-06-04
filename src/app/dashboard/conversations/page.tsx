@@ -70,7 +70,7 @@ export default function ConversationsPage() {
         <Card>
           <div className="divide-y divide-slate-100">
             {data.map((c) => (
-              <Link key={c.id} href={`/conversations/${c.id}`}>
+              <Link key={c.id} href={`/dashboard/conversations/${c.id}`}>
                 <div className="flex items-center justify-between px-5 py-4 transition hover:bg-slate-50">
                   <div className="flex items-center gap-3">
                     <Badge tone={statusTone(c.state)}>{c.state}</Badge>

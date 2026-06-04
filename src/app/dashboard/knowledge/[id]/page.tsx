@@ -69,7 +69,7 @@ export default function KnowledgeBaseDetailPage() {
     try {
       await removeKb.mutateAsync(id);
       toast.success("Base eliminada");
-      router.push("/knowledge");
+      router.push("/dashboard/knowledge");
     } catch (err) {
       toast.error(err instanceof ApiClientError ? err.message : "Erro");
     }
@@ -82,7 +82,7 @@ export default function KnowledgeBaseDetailPage() {
   return (
     <div>
       <Link
-        href="/knowledge"
+        href="/dashboard/knowledge"
         className="mb-4 inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-800"
       >
         <ArrowLeft size={16} /> Conhecimento

@@ -23,36 +23,41 @@ export interface NavItem {
 // conversations; knowledge managers handle RAG.
 export const NAV: NavItem[] = [
   {
-    href: "/",
+    href: "/dashboard",
     label: "Visão geral",
     icon: LayoutDashboard,
     roles: ["admin", "operator", "knowledge_manager"],
   },
   {
-    href: "/conversations",
+    href: "/dashboard/conversations",
     label: "Conversas",
     icon: MessagesSquare,
     roles: ["admin", "operator"],
   },
-  { href: "/channels", label: "Canais", icon: Radio, roles: ["admin"] },
-  { href: "/agents", label: "Agentes", icon: Bot, roles: ["admin"] },
+  { href: "/dashboard/channels", label: "Canais", icon: Radio, roles: ["admin"] },
+  { href: "/dashboard/agents", label: "Agentes", icon: Bot, roles: ["admin"] },
   {
-    href: "/knowledge",
+    href: "/dashboard/knowledge",
     label: "Conhecimento",
     icon: Library,
     roles: ["admin", "knowledge_manager"],
   },
   {
-    href: "/automations",
+    href: "/dashboard/automations",
     label: "Automações",
     icon: Plug,
     roles: ["admin"],
   },
   {
-    href: "/billing",
+    href: "/dashboard/billing",
     label: "Faturação",
     icon: CreditCard,
     roles: ["admin"],
   },
-  { href: "/settings", label: "Definições", icon: Settings, roles: ["admin"] },
+  {
+    href: "/dashboard/settings",
+    label: "Definições",
+    icon: Settings,
+    roles: ["admin"],
+  },
 ];

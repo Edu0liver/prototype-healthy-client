@@ -13,20 +13,24 @@ export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
   const hasSession = Boolean(req.cookies.get(ACCESS_COOKIE)?.value);
   const isAuthPage = AUTH_PATHS.some((p) => pathname.startsWith(p));
+  // Only the dashboard is protected; the landing/marketing pages are public.
+  const isProtected =
+    pathname === "/dashboard" || pathname.startsWith("/dashboard/");
 
   if (isAuthPage) {
     if (hasSession) {
-      return NextResponse.redirect(new URL("/", req.url));
+      return NextResponse.redirect(new URL("/dashboard", req.url));
     }
     return NextResponse.next();
   }
 
-  // Everything else is protected.
-  if (!hasSession) {
+  if (isProtected && !hasSession) {
     const url = new URL("/login", req.url);
-    if (pathname !== "/") url.searchParams.set("next", pathname);
+    url.searchParams.set("next", pathname);
     return NextResponse.redirect(url);
   }
+
+  // Landing and any other public route.
   return NextResponse.next();
 }
 

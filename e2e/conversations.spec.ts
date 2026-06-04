@@ -2,7 +2,7 @@ import { authedTest as test, expect } from "./fixtures";
 
 test.describe("Conversations", () => {
   test("lists conversations and filters by state", async ({ page }) => {
-    await page.goto("/conversations");
+    await page.goto("/dashboard/conversations");
     await expect(page.getByRole("heading", { name: "Conversas" })).toBeVisible();
     await expect(page.getByText("ct-aaaaa")).toBeVisible(); // ai conversation
     await expect(page.getByText("ct-bbbbb")).toBeVisible(); // human conversation
@@ -14,7 +14,7 @@ test.describe("Conversations", () => {
   });
 
   test("handover: take, reply and close a conversation", async ({ page }) => {
-    await page.goto("/conversations/cv1");
+    await page.goto("/dashboard/conversations/cv1");
     await expect(page.getByText("Olá, quero saber preços")).toBeVisible();
 
     // AI state: composer disabled, "Assumir" available.

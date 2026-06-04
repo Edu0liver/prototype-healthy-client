@@ -68,7 +68,7 @@ export default function ChannelsPage() {
       ) : (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {data.map((ch) => (
-            <Link key={ch.id} href={`/channels/${ch.id}`}>
+            <Link key={ch.id} href={`/dashboard/channels/${ch.id}`}>
               <Card className="transition hover:shadow-md">
                 <CardBody>
                   <div className="mb-2 flex items-center justify-between">

@@ -67,7 +67,7 @@ export default function ChannelDetailPage() {
     try {
       await disconnect.mutateAsync(id);
       toast.success("Canal desligado");
-      router.push("/channels");
+      router.push("/dashboard/channels");
     } catch (err) {
       toast.error(err instanceof ApiClientError ? err.message : "Erro");
     }
@@ -79,7 +79,7 @@ export default function ChannelDetailPage() {
   return (
     <div>
       <Link
-        href="/channels"
+        href="/dashboard/channels"
         className="mb-4 inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-800"
       >
         <ArrowLeft size={16} /> Canais

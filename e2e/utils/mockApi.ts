@@ -481,6 +481,7 @@ export async function installMockBackend(page: Page) {
     }
 
     // billing
+    if (p === "/plans") return J(200, { plans: db.plans }); // public catalogue
     if (p === "/billing/subscription") return J(200, db.subscription);
     if (p === "/billing/usage") return J(200, db.usage);
     if (p === "/billing/plans") return J(200, { plans: db.plans });
@@ -488,7 +489,7 @@ export async function installMockBackend(page: Page) {
       const b = await body(route);
       // Same-origin URL so the redirect stays inside the app for the E2E run.
       return J(200, {
-        checkout_url: `${url.origin}/billing?checkout=success&plan=${b.plan_code as string}`,
+        checkout_url: `${url.origin}/dashboard/billing?checkout=success&plan=${b.plan_code as string}`,
       });
     }
 

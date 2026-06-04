@@ -2,14 +2,14 @@ import { authedTest as test, expect } from "./fixtures";
 
 test.describe("Settings", () => {
   test("branding tab saves", async ({ page }) => {
-    await page.goto("/settings");
+    await page.goto("/dashboard/settings");
     await expect(page.getByRole("heading", { name: "Definições" })).toBeVisible();
     await page.getByRole("button", { name: "Guardar" }).click();
     await expect(page.getByText("Branding atualizado")).toBeVisible();
   });
 
   test("domains tab lists and adds a domain", async ({ page }) => {
-    await page.goto("/settings");
+    await page.goto("/dashboard/settings");
     await page.getByRole("button", { name: "Domínios" }).click();
     await expect(page.getByText("painel.acme.com")).toBeVisible();
 
@@ -19,7 +19,7 @@ test.describe("Settings", () => {
   });
 
   test("users tab lists and invites a user", async ({ page }) => {
-    await page.goto("/settings");
+    await page.goto("/dashboard/settings");
     await page.getByRole("button", { name: "Utilizadores" }).click();
     await expect(page.getByText("admin@acme.com")).toBeVisible();
 

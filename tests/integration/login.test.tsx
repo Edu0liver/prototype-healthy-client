@@ -42,7 +42,7 @@ describe("Login page", () => {
     renderWithProviders(<LoginPage />);
     await fillAndSubmit();
 
-    await waitFor(() => expect(mockReplace).toHaveBeenCalledWith("/"));
+    await waitFor(() => expect(mockReplace).toHaveBeenCalledWith("/dashboard"));
   });
 
   it("error: shows the backend error message on invalid credentials", async () => {

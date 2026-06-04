@@ -38,15 +38,16 @@ const FEATURES = [
 ];
 
 function formatPrice(cents: number, currency: string): string {
-  if (cents === 0) return "Grátis";
+  // price 0 = custom/enterprise plan (no Free tier exists).
+  if (cents === 0) return "Sob consulta";
   return new Intl.NumberFormat("pt-BR", { style: "currency", currency }).format(
     cents / 100,
   );
 }
 
 function planCta(plan: Plan): { label: string; href: string } {
-  if (plan.code === "free") return { label: "Começar grátis", href: "/signup" };
-  if (plan.code === "enterprise")
+  // Custom/enterprise (price 0 or not self-serve purchasable) → talk to sales.
+  if (plan.code === "enterprise" || plan.price_cents === 0 || !plan.purchasable)
     return { label: "Falar com vendas", href: "mailto:vendas@lumia.app" };
   return { label: "Assinar", href: `/signup?plan=${plan.code}` };
 }
@@ -70,13 +71,16 @@ export default function LandingPage() {
           conhecimento da sua empresa, handover humano e tudo em tempo real.
         </p>
         <div className="mt-8 flex items-center justify-center gap-3">
-          <Link href="/signup">
-            <Button>Criar conta grátis</Button>
-          </Link>
           <Link href="#pricing">
-            <Button variant="outline">Ver planos</Button>
+            <Button>Ver planos</Button>
+          </Link>
+          <Link href="/login">
+            <Button variant="outline">Entrar</Button>
           </Link>
         </div>
+        <p className="mt-3 text-sm text-slate-400">
+          A partir de R$ 14,99/mês · sem fidelização
+        </p>
       </section>
 
       {/* Features */}

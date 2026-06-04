@@ -1,6 +1,7 @@
 "use client";
 
 import { Sidebar } from "@/components/layout/Sidebar";
+import { SubscriptionGate } from "@/components/layout/SubscriptionGate";
 import { Topbar } from "@/components/layout/Topbar";
 import { Loading } from "@/components/ui/states";
 import { useAuth } from "@/lib/auth/AuthContext";
@@ -17,7 +18,11 @@ function DashboardInner({ children }: { children: React.ReactNode }) {
       <div className="flex min-w-0 flex-1 flex-col">
         <Topbar realtimeOpen={status === "open"} />
         <main className="flex-1 overflow-y-auto p-6">
-          {loading && !user ? <Loading /> : children}
+          {loading && !user ? (
+            <Loading />
+          ) : (
+            <SubscriptionGate>{children}</SubscriptionGate>
+          )}
         </main>
       </div>
     </div>

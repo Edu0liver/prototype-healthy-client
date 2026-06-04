@@ -77,7 +77,8 @@ function SignupForm() {
           return;
         }
       }
-      router.replace("/dashboard");
+      // No plan chosen → land on billing to pick one (no Free tier).
+      router.replace("/dashboard/billing");
     } catch (err) {
       const msg =
         err instanceof ApiClientError ? err.message : "Falha no registo";

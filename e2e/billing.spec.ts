@@ -34,4 +34,23 @@ test.describe("Billing", () => {
     await page.waitForURL(/checkout=success&plan=starter/);
     expect(page.url()).toContain("plan=starter");
   });
+
+  test("blocks the dashboard when the subscription is inactive", async ({
+    page,
+  }) => {
+    // No valid subscription → the SubscriptionGate locks operational pages.
+    await page.route("**/api/v1/billing/subscription", (route) =>
+      route.fulfill({
+        status: 404,
+        contentType: "application/json",
+        body: JSON.stringify({ error: "not_found" }),
+      }),
+    );
+    await page.goto("/dashboard/agents");
+    await expect(page.getByText("Assinatura inativa")).toBeVisible();
+    // The agents UI must not render behind the gate.
+    await expect(
+      page.getByRole("heading", { name: "Agentes" }),
+    ).toHaveCount(0);
+  });
 });

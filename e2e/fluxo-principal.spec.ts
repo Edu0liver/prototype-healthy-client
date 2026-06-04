@@ -52,6 +52,7 @@ test.describe("Signup", () => {
     await page.locator('input[type="password"]').fill("secret12345");
     await page.getByRole("button", { name: /criar conta/i }).click();
 
-    await expect(page).toHaveURL("http://localhost:3000/dashboard");
+    // No plan chosen at signup → lands on billing to pick a plan (no Free tier).
+    await expect(page).toHaveURL("http://localhost:3000/dashboard/billing");
   });
 });

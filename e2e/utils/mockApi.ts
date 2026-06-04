@@ -184,10 +184,9 @@ function makeStore() {
       ],
     } as Json,
     plans: [
-      { code: "free", name: "Free", price_cents: 0, currency: "BRL", quota_ai_messages: 100, quota_tokens: 50000, quota_audio_minutes: 10, quota_storage_mb: 50, max_channels: 1, max_agents: 1, max_kb: 1, max_seats: 1, purchasable: false },
-      { code: "starter", name: "Starter", price_cents: 9900, currency: "BRL", quota_ai_messages: 2000, quota_tokens: 2000000, quota_audio_minutes: 120, quota_storage_mb: 500, max_channels: 2, max_agents: 3, max_kb: 5, max_seats: 3, purchasable: true },
-      { code: "pro", name: "Pro", price_cents: 29900, currency: "BRL", quota_ai_messages: 10000, quota_tokens: 10000000, quota_audio_minutes: 600, quota_storage_mb: 2000, max_channels: 5, max_agents: 10, max_kb: 20, max_seats: 10, purchasable: true },
-      { code: "enterprise", name: "Enterprise", price_cents: 0, currency: "BRL", quota_ai_messages: 0, quota_tokens: 0, quota_audio_minutes: 0, quota_storage_mb: 0, max_channels: 0, max_agents: 0, max_kb: 0, max_seats: 0, purchasable: true },
+      { code: "starter", name: "Starter", price_cents: 1499, currency: "BRL", quota_ai_messages: 1000, quota_tokens: 2000000, quota_audio_minutes: 60, quota_storage_mb: 200, max_channels: 1, max_agents: 2, max_kb: 3, max_seats: 2, purchasable: true },
+      { code: "pro", name: "Pro", price_cents: 9990, currency: "BRL", quota_ai_messages: 10000, quota_tokens: 20000000, quota_audio_minutes: 600, quota_storage_mb: 2000, max_channels: 5, max_agents: 10, max_kb: 20, max_seats: 10, purchasable: true },
+      { code: "enterprise", name: "Enterprise", price_cents: 0, currency: "BRL", quota_ai_messages: 0, quota_tokens: 0, quota_audio_minutes: 0, quota_storage_mb: 0, max_channels: 0, max_agents: 0, max_kb: 0, max_seats: 0, purchasable: false },
     ] as Json[],
   };
 }

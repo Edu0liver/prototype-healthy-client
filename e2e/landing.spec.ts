@@ -22,12 +22,7 @@ test.describe("Landing", () => {
     ).toBeVisible();
 
     // Choosing a paid plan goes to signup (not login) even while logged out.
-    await page
-      .locator("div")
-      .filter({ hasText: /^Starter/ })
-      .first()
-      .getByRole("link", { name: "Assinar" })
-      .click();
+    await page.locator('a[href="/signup?plan=starter"]').click();
     await page.waitForURL(/\/signup\?plan=starter/);
     await expect(page).toHaveURL(/\/signup/);
   });
@@ -50,11 +45,7 @@ test.describe("Landing", () => {
   }) => {
     await page.goto("/");
 
-    const starter = page
-      .locator("div")
-      .filter({ hasText: /^Starter/ })
-      .first();
-    await starter.getByRole("link", { name: "Assinar" }).click();
+    await page.locator('a[href="/signup?plan=starter"]').click();
 
     await page.waitForURL(/\/signup\?plan=starter/);
     expect(page.url()).toContain("plan=starter");

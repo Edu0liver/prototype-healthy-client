@@ -37,7 +37,7 @@ const KIND_LABEL: Record<string, string> = {
 };
 
 function formatPrice(cents: number, currency: string): string {
-  if (cents === 0) return "Grátis";
+  if (cents === 0) return "Sob consulta";
   return (
     new Intl.NumberFormat("pt-BR", { style: "currency", currency }).format(
       cents / 100,

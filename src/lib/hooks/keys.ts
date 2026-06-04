@@ -21,4 +21,7 @@ export const qk = {
     ["conversations", f ?? {}] as const,
   conversation: (id: string) => ["conversations", id] as const,
   messages: (id: string) => ["conversations", id, "messages"] as const,
+  subscription: ["billing", "subscription"] as const,
+  usage: ["billing", "usage"] as const,
+  plans: ["billing", "plans"] as const,
 };

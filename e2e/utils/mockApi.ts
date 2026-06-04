@@ -162,6 +162,33 @@ function makeStore() {
         },
       ],
     } as Record<string, Json[]>,
+    subscription: {
+      plan_code: "pro",
+      plan_name: "Pro",
+      status: "active",
+      billing_cycle: "monthly",
+      current_period_start: new Date().toISOString(),
+      current_period_end: new Date(Date.now() + 30 * 864e5).toISOString(),
+      cancel_at_period_end: false,
+      price_cents: 29900,
+      currency: "BRL",
+    } as Json,
+    usage: {
+      period_start: new Date().toISOString(),
+      period_end: new Date(Date.now() + 30 * 864e5).toISOString(),
+      items: [
+        { kind: "ai_message", used: 42, quota: 10000, unlimited: false },
+        { kind: "llm_tokens", used: 1500, quota: 10000000, unlimited: false },
+        { kind: "audio_minutes", used: 3, quota: 600, unlimited: false },
+        { kind: "storage_mb", used: 12, quota: 2000, unlimited: false },
+      ],
+    } as Json,
+    plans: [
+      { code: "free", name: "Free", price_cents: 0, currency: "BRL", quota_ai_messages: 100, quota_tokens: 50000, quota_audio_minutes: 10, quota_storage_mb: 50, max_channels: 1, max_agents: 1, max_kb: 1, max_seats: 1, purchasable: false },
+      { code: "starter", name: "Starter", price_cents: 9900, currency: "BRL", quota_ai_messages: 2000, quota_tokens: 2000000, quota_audio_minutes: 120, quota_storage_mb: 500, max_channels: 2, max_agents: 3, max_kb: 5, max_seats: 3, purchasable: true },
+      { code: "pro", name: "Pro", price_cents: 29900, currency: "BRL", quota_ai_messages: 10000, quota_tokens: 10000000, quota_audio_minutes: 600, quota_storage_mb: 2000, max_channels: 5, max_agents: 10, max_kb: 20, max_seats: 10, purchasable: true },
+      { code: "enterprise", name: "Enterprise", price_cents: 0, currency: "BRL", quota_ai_messages: 0, quota_tokens: 0, quota_audio_minutes: 0, quota_storage_mb: 0, max_channels: 0, max_agents: 0, max_kb: 0, max_seats: 0, purchasable: true },
+    ] as Json[],
   };
 }
 
@@ -451,6 +478,18 @@ export async function installMockBackend(page: Page) {
         c.last_message_at = new Date().toISOString();
       }
       return J(200, {});
+    }
+
+    // billing
+    if (p === "/billing/subscription") return J(200, db.subscription);
+    if (p === "/billing/usage") return J(200, db.usage);
+    if (p === "/billing/plans") return J(200, { plans: db.plans });
+    if (p === "/billing/checkout" && method === "POST") {
+      const b = await body(route);
+      // Same-origin URL so the redirect stays inside the app for the E2E run.
+      return J(200, {
+        checkout_url: `${url.origin}/billing?checkout=success&plan=${b.plan_code as string}`,
+      });
     }
 
     // Anything unhandled — fail loudly so missing mocks surface in tests.

@@ -1,5 +1,6 @@
 import {
   Bot,
+  CreditCard,
   LayoutDashboard,
   type LucideIcon,
   MessagesSquare,
@@ -45,6 +46,12 @@ export const NAV: NavItem[] = [
     href: "/automations",
     label: "Automações",
     icon: Plug,
+    roles: ["admin"],
+  },
+  {
+    href: "/billing",
+    label: "Faturação",
+    icon: CreditCard,
     roles: ["admin"],
   },
   { href: "/settings", label: "Definições", icon: Settings, roles: ["admin"] },

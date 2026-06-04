@@ -87,6 +87,26 @@ export const SourceType = {
 } as const;
 export type SourceType = (typeof SourceType)[keyof typeof SourceType];
 
+export const SubscriptionStatus = {
+  Trialing: "trialing",
+  Active: "active",
+  PastDue: "past_due",
+  Canceled: "canceled",
+  Suspended: "suspended",
+} as const;
+export type SubscriptionStatus =
+  (typeof SubscriptionStatus)[keyof typeof SubscriptionStatus];
+
+// Metered usage dimensions (internal/modules/billing usage_events.kind).
+export const UsageKind = {
+  AIMessage: "ai_message",
+  LLMTokens: "llm_tokens",
+  AudioMinutes: "audio_minutes",
+  StorageMB: "storage_mb",
+  EmbeddingTokens: "embedding_tokens",
+} as const;
+export type UsageKind = (typeof UsageKind)[keyof typeof UsageKind];
+
 // Realtime WS event types (internal/shared/events/events.go).
 export const RealtimeEventType = {
   Message: "message",

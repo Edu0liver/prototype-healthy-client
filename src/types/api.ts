@@ -14,6 +14,8 @@ import type {
   Role,
   SenderType,
   SourceType,
+  SubscriptionStatus,
+  UsageKind,
   UserStatus,
 } from "./enums";
 
@@ -294,3 +296,56 @@ export type KnowledgeBasesList = { knowledge_bases: KnowledgeBase[] };
 export type DocumentsList = { documents: KnowledgeDocument[] };
 export type UsersList = { users: User[] };
 export type DomainsList = { domains: Domain[] };
+
+// ---- Billing ---------------------------------------------------------------
+
+export interface Subscription {
+  plan_code: string;
+  plan_name: string;
+  status: SubscriptionStatus;
+  billing_cycle: string;
+  current_period_start: string;
+  current_period_end: string;
+  cancel_at_period_end: boolean;
+  price_cents: number;
+  currency: string;
+}
+
+export interface UsageItem {
+  kind: UsageKind;
+  used: number;
+  quota: number; // 0 = unlimited
+  unlimited: boolean;
+}
+
+export interface UsageResponse {
+  period_start: string;
+  period_end: string;
+  items: UsageItem[];
+}
+
+export interface Plan {
+  code: string;
+  name: string;
+  price_cents: number;
+  currency: string;
+  quota_ai_messages: number;
+  quota_tokens: number;
+  quota_audio_minutes: number;
+  quota_storage_mb: number;
+  max_channels: number;
+  max_agents: number;
+  max_kb: number;
+  max_seats: number;
+  purchasable: boolean;
+}
+
+export type PlansList = { plans: Plan[] };
+
+export interface CheckoutRequest {
+  plan_code: string;
+}
+
+export interface CheckoutResponse {
+  checkout_url: string;
+}

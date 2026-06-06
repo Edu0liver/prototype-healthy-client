@@ -80,16 +80,16 @@ export default function AgentsPage() {
                       <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand/10 text-brand transition duration-200 group-hover:bg-brand group-hover:text-brand-fg">
                         <Bot size={16} />
                       </span>
-                      <span className="truncate font-medium text-slate-900">
+                      <span className="truncate font-medium text-slate-900 dark:text-slate-100">
                         {a.name}
                       </span>
                     </div>
                     <Badge tone={statusTone(a.status)}>{a.status}</Badge>
                   </div>
-                  <p className="line-clamp-2 text-sm text-slate-500">
+                  <p className="line-clamp-2 text-sm text-slate-500 dark:text-slate-400">
                     {a.system_prompt}
                   </p>
-                  <p className="mt-2 font-mono text-xs text-slate-400">
+                  <p className="mt-2 font-mono text-xs text-slate-400 dark:text-slate-500">
                     {a.model}
                   </p>
                 </CardBody>

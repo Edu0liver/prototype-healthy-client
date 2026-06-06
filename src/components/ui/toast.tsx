@@ -62,9 +62,10 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
             className={cn(
               "flex items-start gap-2 rounded-lg border px-4 py-3 text-sm shadow-lg",
               t.kind === "success" &&
-                "border-green-200 bg-green-50 text-green-800",
-              t.kind === "error" && "border-red-200 bg-red-50 text-red-800",
-              t.kind === "info" && "border-slate-200 bg-white text-slate-800",
+                "border-green-200 bg-green-50 text-green-800 dark:border-green-500/25 dark:bg-green-500/15 dark:text-green-300",
+              t.kind === "error" &&
+                "border-red-200 bg-red-50 text-red-800 dark:border-red-500/25 dark:bg-red-500/15 dark:text-red-300",
+              t.kind === "info" && "border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200",
             )}
           >
             <span className="flex-1">{t.message}</span>

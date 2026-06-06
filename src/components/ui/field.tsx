@@ -6,7 +6,7 @@ import { forwardRef, useState } from "react";
 import { cn } from "@/lib/utils/cn";
 
 const baseControl =
-  "w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30 disabled:bg-slate-50 disabled:text-slate-500";
+  "w-full rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3 py-2 text-sm text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30 disabled:bg-slate-50 dark:disabled:bg-slate-800 disabled:text-slate-500";
 
 export function Label({
   children,
@@ -15,7 +15,7 @@ export function Label({
 }: React.LabelHTMLAttributes<HTMLLabelElement>) {
   return (
     <label
-      className={cn("mb-1 block text-sm font-medium text-slate-700", className)}
+      className={cn("mb-1 block text-sm font-medium text-slate-700 dark:text-slate-200", className)}
       {...props}
     >
       {children}
@@ -49,7 +49,7 @@ export const PasswordInput = forwardRef<
         type="button"
         onClick={() => setShow((v) => !v)}
         aria-label={show ? "Ocultar senha" : "Mostrar senha"}
-        className="absolute inset-y-0 right-0 flex w-10 items-center justify-center text-slate-400 transition hover:text-slate-600 focus:outline-none focus-visible:text-brand"
+        className="absolute inset-y-0 right-0 flex w-10 items-center justify-center text-slate-400 dark:text-slate-500 transition hover:text-slate-600 dark:hover:text-slate-300 focus:outline-none focus-visible:text-brand"
       >
         {show ? <EyeOff size={16} /> : <Eye size={16} />}
       </button>
@@ -91,7 +91,7 @@ export function Field({
     <div>
       {label && <Label>{label}</Label>}
       {children}
-      {hint && !error && <p className="mt-1 text-xs text-slate-500">{hint}</p>}
+      {hint && !error && <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">{hint}</p>}
       {error && <p className="mt-1 text-xs text-red-600">{error}</p>}
     </div>
   );

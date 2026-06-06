@@ -10,11 +10,11 @@ export function PageHeader({
   return (
     <div className="mb-6 flex items-start justify-between gap-4">
       <div>
-        <h1 className="font-display text-xl font-semibold tracking-tight text-slate-900">
+        <h1 className="font-display text-xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
           {title}
         </h1>
         {description && (
-          <p className="mt-1 text-sm text-slate-500">{description}</p>
+          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{description}</p>
         )}
       </div>
       {action && <div className="shrink-0">{action}</div>}

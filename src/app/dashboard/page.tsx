@@ -31,10 +31,10 @@ function Stat({
             {icon}
           </div>
           <div>
-            <p className="font-display text-2xl font-semibold tabular-nums text-slate-900">
+            <p className="font-display text-2xl font-semibold tabular-nums text-slate-900 dark:text-slate-100">
               {value}
             </p>
-            <p className="text-sm text-slate-500">{label}</p>
+            <p className="text-sm text-slate-500 dark:text-slate-400">{label}</p>
           </div>
         </CardBody>
       </Card>
@@ -94,10 +94,10 @@ export default function OverviewPage() {
           <CardBody>
             <div className="flex items-center justify-between">
               <div>
-                <p className="font-medium text-slate-900">
+                <p className="font-medium text-slate-900 dark:text-slate-100">
                   Conversas a aguardar atendimento humano
                 </p>
-                <p className="text-sm text-slate-500">
+                <p className="text-sm text-slate-500 dark:text-slate-400">
                   Transferidas pela IA para um operador.
                 </p>
               </div>

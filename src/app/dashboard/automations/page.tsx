@@ -103,17 +103,17 @@ export default function AutomationsPage() {
                     {a.is_active ? "Ativa" : "Inativa"}
                   </Badge>
                   <div className="flex items-center gap-2 text-sm">
-                    <span className="inline-flex items-center gap-1.5 rounded-lg bg-slate-100 px-2 py-1 font-medium text-slate-700">
-                      <Radio size={14} className="text-slate-400" />
+                    <span className="inline-flex items-center gap-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 px-2 py-1 font-medium text-slate-700 dark:text-slate-200">
+                      <Radio size={14} className="text-slate-400 dark:text-slate-500" />
                       {channelName(a.channel_id)}
                     </span>
-                    <ArrowRight size={14} className="text-slate-400" />
+                    <ArrowRight size={14} className="text-slate-400 dark:text-slate-500" />
                     <span className="inline-flex items-center gap-1.5 rounded-lg bg-brand/10 px-2 py-1 font-medium text-brand">
                       <Bot size={14} />
                       {agentName(a.agent_id)}
                     </span>
                   </div>
-                  <span className="text-xs tabular-nums text-slate-400">
+                  <span className="text-xs tabular-nums text-slate-400 dark:text-slate-500">
                     debounce {a.debounce_seconds}s
                   </span>
                 </div>
@@ -139,7 +139,7 @@ export default function AutomationsPage() {
                       )
                         remove.mutate(a.id);
                     }}
-                    className="rounded-lg p-2 text-slate-400 transition hover:bg-red-50 hover:text-red-600"
+                    className="rounded-lg p-2 text-slate-400 dark:text-slate-500 transition hover:bg-red-50 hover:text-red-600"
                     title="Eliminar"
                     aria-label="Eliminar automação"
                   >

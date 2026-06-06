@@ -84,28 +84,28 @@ export default function UsersPage() {
           }
         />
       ) : (
-        <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">
+        <div className="overflow-hidden rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-slate-100 bg-slate-50 text-left text-xs font-medium uppercase tracking-wide text-slate-500">
+              <tr className="border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40 text-left text-xs font-medium uppercase tracking-wide text-slate-500 dark:text-slate-400">
                 <th className="px-4 py-3">Utilizador</th>
                 <th className="px-4 py-3">Papel</th>
                 <th className="px-4 py-3">Estado</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
               {data.map((u) => {
                 const status = STATUS_BADGE[u.status] ?? {
                   tone: "neutral" as const,
                   label: u.status,
                 };
                 return (
-                  <tr key={u.id} className="hover:bg-slate-50">
+                  <tr key={u.id} className="hover:bg-slate-50 dark:hover:bg-slate-800">
                     <td className="px-4 py-3">
-                      <p className="font-medium text-slate-900">
+                      <p className="font-medium text-slate-900 dark:text-slate-100">
                         {u.name || "—"}
                       </p>
-                      <p className="text-xs text-slate-400">{u.email}</p>
+                      <p className="text-xs text-slate-400 dark:text-slate-500">{u.email}</p>
                     </td>
                     <td className="px-4 py-3">
                       <Badge tone="neutral">

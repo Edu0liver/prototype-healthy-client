@@ -41,7 +41,7 @@ function LoginForm() {
   return (
     <Card>
       <CardBody>
-        <h2 className="mb-4 font-display text-lg font-semibold text-slate-900">
+        <h2 className="mb-4 font-display text-lg font-semibold text-slate-900 dark:text-slate-100">
           Entrar
         </h2>
         <form onSubmit={onSubmit} className="space-y-4">
@@ -68,7 +68,7 @@ function LoginForm() {
             Entrar
           </Button>
         </form>
-        <p className="mt-4 text-center text-sm text-slate-500">
+        <p className="mt-4 text-center text-sm text-slate-500 dark:text-slate-400">
           Não tem conta?{" "}
           <Link href="/signup" className="font-medium text-brand hover:underline">
             Criar empresa

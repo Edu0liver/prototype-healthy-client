@@ -35,10 +35,10 @@ export function SubscriptionGate({ children }: { children: React.ReactNode }) {
           <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-amber-100 text-amber-700">
             <CreditCard size={24} />
           </div>
-          <h2 className="text-lg font-semibold text-slate-900">
+          <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">
             Assinatura inativa
           </h2>
-          <p className="text-sm text-slate-600">
+          <p className="text-sm text-slate-600 dark:text-slate-300">
             A sua assinatura está ausente, expirada ou pendente de pagamento.
             Regularize para continuar a usar a plataforma.
           </p>
@@ -47,7 +47,7 @@ export function SubscriptionGate({ children }: { children: React.ReactNode }) {
               <Button>Ver planos e pagar</Button>
             </Link>
           ) : (
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-slate-400 dark:text-slate-500">
               Contacte o administrador da conta.
             </p>
           )}

@@ -68,21 +68,21 @@ export default function ConversationsPage() {
         />
       ) : (
         <Card>
-          <div className="divide-y divide-slate-100">
+          <div className="divide-y divide-slate-100 dark:divide-slate-800">
             {data.map((c) => (
               <Link key={c.id} href={`/dashboard/conversations/${c.id}`}>
-                <div className="group flex items-center justify-between gap-3 px-5 py-4 transition hover:bg-slate-50">
+                <div className="group flex items-center justify-between gap-3 px-5 py-4 transition hover:bg-slate-50 dark:hover:bg-slate-800">
                   <div className="flex min-w-0 items-center gap-3">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-400">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500">
                       <User size={16} />
                     </span>
-                    <span className="truncate font-mono text-sm text-slate-700">
+                    <span className="truncate font-mono text-sm text-slate-700 dark:text-slate-200">
                       {c.contact_id.slice(0, 8)}
                     </span>
                     <Badge tone={statusTone(c.state)}>{c.state}</Badge>
                   </div>
                   <div className="flex shrink-0 items-center gap-2">
-                    <span className="text-xs tabular-nums text-slate-400">
+                    <span className="text-xs tabular-nums text-slate-400 dark:text-slate-500">
                       {relativeTime(c.last_message_at ?? c.opened_at)}
                     </span>
                     <ChevronRight

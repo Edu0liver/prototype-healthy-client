@@ -75,14 +75,14 @@ export default function KnowledgePage() {
                     <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand/10 text-brand transition duration-200 group-hover:bg-brand group-hover:text-brand-fg">
                       <Library size={16} />
                     </span>
-                    <p className="truncate font-medium text-slate-900">
+                    <p className="truncate font-medium text-slate-900 dark:text-slate-100">
                       {kb.name}
                     </p>
                   </div>
-                  <p className="line-clamp-2 text-sm text-slate-500">
+                  <p className="line-clamp-2 text-sm text-slate-500 dark:text-slate-400">
                     {kb.description || "Sem descrição"}
                   </p>
-                  <p className="mt-2 font-mono text-xs text-slate-400">
+                  <p className="mt-2 font-mono text-xs text-slate-400 dark:text-slate-500">
                     {kb.embedding_model || "text-embedding-3-small"}
                   </p>
                 </CardBody>

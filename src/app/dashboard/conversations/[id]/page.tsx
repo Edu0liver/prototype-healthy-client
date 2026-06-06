@@ -74,7 +74,7 @@ export default function ConversationDetailPage() {
     <div className="flex h-[calc(100vh-7rem)] flex-col">
       <Link
         href="/dashboard/conversations"
-        className="mb-3 inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-800"
+        className="mb-3 inline-flex items-center gap-1 text-sm text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-100"
       >
         <ArrowLeft size={16} /> Conversas
       </Link>
@@ -114,13 +114,13 @@ export default function ConversationDetailPage() {
       />
 
       <Card className="flex min-h-0 flex-1 flex-col overflow-hidden">
-        <div className="flex-1 space-y-3 overflow-y-auto bg-slate-50 p-4">
+        <div className="flex-1 space-y-3 overflow-y-auto bg-slate-50 dark:bg-slate-800/40 p-4">
           {messages.isLoading ? (
             <Loading />
           ) : messages.data && messages.data.length > 0 ? (
             messages.data.map((m) => <MessageBubble key={m.id} msg={m} />)
           ) : (
-            <div className="flex flex-col items-center justify-center gap-2 py-12 text-center text-slate-400">
+            <div className="flex flex-col items-center justify-center gap-2 py-12 text-center text-slate-400 dark:text-slate-500">
               <MessagesSquare size={28} />
               <p className="text-sm">Sem mensagens nesta conversa.</p>
             </div>
@@ -130,7 +130,7 @@ export default function ConversationDetailPage() {
 
         <form
           onSubmit={send}
-          className="flex items-center gap-2 border-t border-slate-100 bg-white p-3"
+          className="flex items-center gap-2 border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 p-3"
         >
           <input
             value={text}
@@ -141,7 +141,7 @@ export default function ConversationDetailPage() {
                 ? "Escreva uma resposta…"
                 : "Assuma a conversa para responder"
             }
-            className="flex-1 rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30 disabled:cursor-not-allowed disabled:bg-slate-50"
+            className="flex-1 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3 py-2 text-sm text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30 disabled:cursor-not-allowed disabled:bg-slate-50 dark:disabled:bg-slate-800"
           />
           <Button type="submit" disabled={!isHuman} loading={reply.isPending}>
             <Send size={16} /> Enviar

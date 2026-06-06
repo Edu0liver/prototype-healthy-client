@@ -83,7 +83,7 @@ export default function KnowledgeBaseDetailPage() {
     <div>
       <Link
         href="/dashboard/knowledge"
-        className="mb-4 inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-800"
+        className="mb-4 inline-flex items-center gap-1 text-sm text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-100"
       >
         <ArrowLeft size={16} /> Conhecimento
       </Link>
@@ -119,7 +119,7 @@ export default function KnowledgeBaseDetailPage() {
               >
                 <Upload size={16} /> Escolher ficheiro
               </Button>
-              <p className="mt-2 text-xs text-slate-500">
+              <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">
                 PDF, DOCX, TXT, MD, HTML.
               </p>
             </CardBody>
@@ -170,17 +170,17 @@ export default function KnowledgeBaseDetailPage() {
                 description="Carregue ficheiros ou cole texto para indexar."
               />
             ) : (
-              <div className="divide-y divide-slate-100">
+              <div className="divide-y divide-slate-100 dark:divide-slate-800">
                 {docs.data.map((d) => (
                   <div
                     key={d.id}
                     className="flex items-center justify-between py-3"
                   >
                     <div className="min-w-0">
-                      <p className="truncate text-sm font-medium text-slate-900">
+                      <p className="truncate text-sm font-medium text-slate-900 dark:text-slate-100">
                         {d.filename || "Texto"}
                       </p>
-                      <p className="text-xs text-slate-400">
+                      <p className="text-xs text-slate-400 dark:text-slate-500">
                         {formatDateTime(d.created_at)} ·{" "}
                         {d.token_count > 0 ? `${d.token_count} tokens` : "—"}
                       </p>
@@ -192,7 +192,7 @@ export default function KnowledgeBaseDetailPage() {
                       <Badge tone={statusTone(d.status)}>{d.status}</Badge>
                       <button
                         onClick={() => removeDoc.mutate(d.id)}
-                        className="text-slate-400 hover:text-red-600"
+                        className="text-slate-400 dark:text-slate-500 hover:text-red-600"
                         title="Eliminar"
                       >
                         <Trash2 size={16} />

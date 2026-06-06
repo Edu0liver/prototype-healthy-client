@@ -18,10 +18,10 @@ const variants: Record<Variant, string> = {
   primary:
     "bg-brand text-brand-fg hover:opacity-90 focus-visible:ring-brand",
   secondary:
-    "bg-slate-900 text-white hover:bg-slate-800 focus-visible:ring-slate-900",
+    "bg-slate-900 text-white hover:bg-slate-800 focus-visible:ring-slate-900 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-slate-200",
   outline:
-    "border border-slate-300 bg-white text-slate-800 hover:bg-slate-50 focus-visible:ring-slate-300",
-  ghost: "text-slate-700 hover:bg-slate-100 focus-visible:ring-slate-200",
+    "border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 focus-visible:ring-slate-300",
+  ghost: "text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 focus-visible:ring-slate-200",
   danger: "bg-red-600 text-white hover:bg-red-700 focus-visible:ring-red-500",
 };
 

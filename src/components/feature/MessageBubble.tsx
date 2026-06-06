@@ -15,7 +15,7 @@ export function MessageBubble({ msg }: { msg: Message }) {
       className={cn("flex gap-2", fromContact ? "justify-start" : "justify-end")}
     >
       {fromContact && (
-        <div className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-slate-200 text-slate-600">
+        <div className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-slate-200 text-slate-600 dark:text-slate-300">
           <Icon size={15} />
         </div>
       )}
@@ -23,7 +23,7 @@ export function MessageBubble({ msg }: { msg: Message }) {
         className={cn(
           "max-w-[75%] rounded-2xl px-4 py-2 text-sm",
           fromContact
-            ? "rounded-tl-sm bg-white text-slate-800 shadow-sm"
+            ? "rounded-tl-sm bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 shadow-sm"
             : msg.sender_type === "ai"
               ? "rounded-tr-sm bg-blue-600 text-white"
               : "rounded-tr-sm bg-brand text-brand-fg",
@@ -33,7 +33,7 @@ export function MessageBubble({ msg }: { msg: Message }) {
         <p
           className={cn(
             "mt-1 text-right text-[10px]",
-            fromContact ? "text-slate-400" : "text-white/70",
+            fromContact ? "text-slate-400 dark:text-slate-500" : "text-white/70",
           )}
         >
           {formatTime(msg.created_at)}

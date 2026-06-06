@@ -6,7 +6,7 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200 p-4">
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-slate-100 dark:from-slate-900 to-slate-200 dark:to-slate-950 p-4">
       {/* Decorative brand glow. */}
       <div
         aria-hidden
@@ -20,10 +20,10 @@ export default function AuthLayout({
           >
             L
           </Link>
-          <h1 className="font-display text-xl font-semibold text-slate-900">
+          <h1 className="font-display text-xl font-semibold text-slate-900 dark:text-slate-100">
             Lumia
           </h1>
-          <p className="text-sm text-slate-500">
+          <p className="text-sm text-slate-500 dark:text-slate-400">
             Atendimento automatizado com IA
           </p>
         </div>

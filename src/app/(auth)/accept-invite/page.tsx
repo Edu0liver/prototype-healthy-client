@@ -45,7 +45,7 @@ function AcceptInviteForm() {
   return (
     <Card>
       <CardBody>
-        <h2 className="mb-4 font-display text-lg font-semibold text-slate-900">
+        <h2 className="mb-4 font-display text-lg font-semibold text-slate-900 dark:text-slate-100">
           Aceitar convite
         </h2>
         <form onSubmit={onSubmit} className="space-y-4">

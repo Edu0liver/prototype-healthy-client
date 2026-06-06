@@ -91,7 +91,7 @@ function SignupForm() {
   return (
     <Card>
       <CardBody>
-        <h2 className="mb-1 font-display text-lg font-semibold text-slate-900">
+        <h2 className="mb-1 font-display text-lg font-semibold text-slate-900 dark:text-slate-100">
           Criar empresa
         </h2>
         {plan && (
@@ -120,7 +120,7 @@ function SignupForm() {
               placeholder="acme"
             />
           </Field>
-          <hr className="border-slate-100" />
+          <hr className="border-slate-100 dark:border-slate-800" />
           <Field label="O seu nome">
             <Input
               autoComplete="name"
@@ -150,7 +150,7 @@ function SignupForm() {
             {plan ? "Criar conta e assinar" : "Criar conta"}
           </Button>
         </form>
-        <p className="mt-4 text-center text-sm text-slate-500">
+        <p className="mt-4 text-center text-sm text-slate-500 dark:text-slate-400">
           Já tem conta?{" "}
           <Link href="/login" className="font-medium text-brand hover:underline">
             Entrar

@@ -131,13 +131,13 @@ export default function LandingPage() {
               <Sparkles size={14} />
               Atendimento com IA + RAG, white-label
             </span>
-            <h1 className="animate-fade-up mt-6 font-display text-4xl font-bold leading-tight tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+            <h1 className="animate-fade-up mt-6 font-display text-4xl font-bold leading-tight tracking-tight text-slate-900 dark:text-slate-100 sm:text-5xl lg:text-6xl">
               Atendimento com IA no seu{" "}
               <span className="bg-gradient-to-r from-brand to-brand-secondary bg-clip-text text-transparent">
                 WhatsApp e Instagram
               </span>
             </h1>
-            <p className="animate-fade-up mx-auto mt-6 max-w-xl text-lg leading-relaxed text-slate-600 lg:mx-0">
+            <p className="animate-fade-up mx-auto mt-6 max-w-xl text-lg leading-relaxed text-slate-600 dark:text-slate-300 lg:mx-0">
               Agentes de IA fundamentados no conhecimento da sua empresa,
               handover humano e tudo em tempo real. Multi-tenant e white-label.
             </p>
@@ -156,7 +156,7 @@ export default function LandingPage() {
                 </Button>
               </Link>
             </div>
-            <p className="mt-4 text-sm text-slate-400">
+            <p className="mt-4 text-sm text-slate-400 dark:text-slate-500">
               A partir de R$ 14,99/mês · sem fidelização
             </p>
           </div>
@@ -166,13 +166,13 @@ export default function LandingPage() {
             aria-hidden
             className="animate-fade-up relative mx-auto hidden w-full max-w-md lg:block"
           >
-            <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xl shadow-slate-900/5">
-              <div className="mb-4 flex items-center gap-2 border-b border-slate-100 pb-3">
+            <div className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-5 shadow-xl shadow-slate-900/5">
+              <div className="mb-4 flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
                 <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand/10 text-brand">
                   <Bot size={16} />
                 </span>
                 <div>
-                  <p className="text-sm font-semibold text-slate-900">
+                  <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">
                     Agente Lumia
                   </p>
                   <p className="flex items-center gap-1 text-xs text-green-600">
@@ -182,14 +182,14 @@ export default function LandingPage() {
                 </div>
               </div>
               <div className="space-y-3">
-                <div className="max-w-[80%] rounded-2xl rounded-tl-sm bg-slate-100 px-3.5 py-2 text-sm text-slate-700">
+                <div className="max-w-[80%] rounded-2xl rounded-tl-sm bg-slate-100 dark:bg-slate-800 px-3.5 py-2 text-sm text-slate-700 dark:text-slate-200">
                   Olá! Qual o prazo de entrega para São Paulo?
                 </div>
                 <div className="ml-auto max-w-[85%] rounded-2xl rounded-tr-sm bg-brand px-3.5 py-2 text-sm text-brand-fg">
                   Para São Paulo capital, o prazo é de 2 a 3 dias úteis. Quer que
                   eu calcule o frete para o seu CEP?
                 </div>
-                <div className="max-w-[80%] rounded-2xl rounded-tl-sm bg-slate-100 px-3.5 py-2 text-sm text-slate-700">
+                <div className="max-w-[80%] rounded-2xl rounded-tl-sm bg-slate-100 dark:bg-slate-800 px-3.5 py-2 text-sm text-slate-700 dark:text-slate-200">
                   Sim, 01310-100
                 </div>
               </div>
@@ -200,7 +200,7 @@ export default function LandingPage() {
       </section>
 
       {/* Trust strip */}
-      <section className="border-y border-slate-100 bg-white">
+      <section className="border-y border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900">
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-6 px-6 py-10 text-center sm:grid-cols-4">
           {[
             ["24/7", "Atendimento automático"],
@@ -209,23 +209,23 @@ export default function LandingPage() {
             ["RLS", "Isolamento multi-tenant"],
           ].map(([stat, label]) => (
             <div key={label}>
-              <p className="font-display text-2xl font-bold text-slate-900">
+              <p className="font-display text-2xl font-bold text-slate-900 dark:text-slate-100">
                 {stat}
               </p>
-              <p className="mt-1 text-sm text-slate-500">{label}</p>
+              <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{label}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Features */}
-      <section className="bg-slate-50/60 py-20">
+      <section className="bg-slate-50/60 dark:bg-slate-900/40 py-20">
         <div className="mx-auto max-w-6xl px-6">
           <div className="mb-12 text-center">
-            <h2 className="font-display text-3xl font-bold text-slate-900">
+            <h2 className="font-display text-3xl font-bold text-slate-900 dark:text-slate-100">
               Tudo o que precisa para atender melhor
             </h2>
-            <p className="mt-3 text-slate-600">
+            <p className="mt-3 text-slate-600 dark:text-slate-300">
               Uma camada de IA sobre os seus canais, pronta a usar.
             </p>
           </div>
@@ -239,10 +239,10 @@ export default function LandingPage() {
                   <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-brand/10 text-brand transition duration-200 group-hover:bg-brand group-hover:text-brand-fg">
                     <f.icon size={22} />
                   </div>
-                  <h3 className="font-display font-semibold text-slate-900">
+                  <h3 className="font-display font-semibold text-slate-900 dark:text-slate-100">
                     {f.title}
                   </h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-slate-600">
+                  <p className="mt-1.5 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
                     {f.desc}
                   </p>
                 </CardBody>
@@ -255,10 +255,10 @@ export default function LandingPage() {
       {/* How it works */}
       <section className="mx-auto max-w-6xl px-6 py-20">
         <div className="mb-12 text-center">
-          <h2 className="font-display text-3xl font-bold text-slate-900">
+          <h2 className="font-display text-3xl font-bold text-slate-900 dark:text-slate-100">
             Comece em 3 passos
           </h2>
-          <p className="mt-3 text-slate-600">
+          <p className="mt-3 text-slate-600 dark:text-slate-300">
             Do canal ligado à IA a atender, em minutos.
           </p>
         </div>
@@ -271,10 +271,10 @@ export default function LandingPage() {
               <span className="mt-4 inline-block font-display text-sm font-semibold text-brand">
                 Passo {i + 1}
               </span>
-              <h3 className="mt-1 font-display text-lg font-semibold text-slate-900">
+              <h3 className="mt-1 font-display text-lg font-semibold text-slate-900 dark:text-slate-100">
                 {s.title}
               </h3>
-              <p className="mx-auto mt-2 max-w-xs text-sm leading-relaxed text-slate-600">
+              <p className="mx-auto mt-2 max-w-xs text-sm leading-relaxed text-slate-600 dark:text-slate-300">
                 {s.desc}
               </p>
             </div>
@@ -283,13 +283,13 @@ export default function LandingPage() {
       </section>
 
       {/* Pricing */}
-      <section id="pricing" className="bg-slate-50/60 py-24">
+      <section id="pricing" className="bg-slate-50/60 dark:bg-slate-900/40 py-24">
         <div className="mx-auto max-w-6xl px-6">
           <div className="mb-12 text-center">
-            <h2 className="font-display text-3xl font-bold text-slate-900">
+            <h2 className="font-display text-3xl font-bold text-slate-900 dark:text-slate-100">
               Planos
             </h2>
-            <p className="mt-3 text-slate-600">
+            <p className="mt-3 text-slate-600 dark:text-slate-300">
               Escolha um plano e comece em minutos. Sem fidelização.
             </p>
           </div>
@@ -327,18 +327,18 @@ export default function LandingPage() {
                         </span>
                       )}
                       <CardBody className="flex h-full flex-col p-6">
-                        <span className="font-display text-lg font-semibold text-slate-900">
+                        <span className="font-display text-lg font-semibold text-slate-900 dark:text-slate-100">
                           {plan.name}
                         </span>
-                        <p className="mt-3 font-display text-3xl font-bold tabular-nums text-slate-900">
+                        <p className="mt-3 font-display text-3xl font-bold tabular-nums text-slate-900 dark:text-slate-100">
                           {formatPrice(plan.price_cents, plan.currency)}
                           {plan.price_cents > 0 && (
-                            <span className="text-sm font-normal text-slate-400">
+                            <span className="text-sm font-normal text-slate-400 dark:text-slate-500">
                               /mês
                             </span>
                           )}
                         </p>
-                        <ul className="mt-6 flex-1 space-y-3 text-sm text-slate-600">
+                        <ul className="mt-6 flex-1 space-y-3 text-sm text-slate-600 dark:text-slate-300">
                           <li className="flex gap-2.5">
                             <Check
                               size={16}
@@ -383,7 +383,7 @@ export default function LandingPage() {
       {/* FAQ */}
       <section className="mx-auto max-w-3xl px-6 py-24">
         <div className="mb-12 text-center">
-          <h2 className="font-display text-3xl font-bold text-slate-900">
+          <h2 className="font-display text-3xl font-bold text-slate-900 dark:text-slate-100">
             Perguntas frequentes
           </h2>
         </div>
@@ -411,7 +411,7 @@ export default function LandingPage() {
             <Link href="/signup">
               <Button
                 variant="secondary"
-                className="h-12 bg-white px-7 text-base text-brand hover:bg-white/90"
+                className="h-12 bg-white dark:bg-slate-900 px-7 text-base text-brand hover:bg-white/90"
               >
                 Criar conta
               </Button>
@@ -434,22 +434,22 @@ export default function LandingPage() {
 function FaqItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">
+    <div className="overflow-hidden rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900">
       <button
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
-        className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition hover:bg-slate-50"
+        className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition hover:bg-slate-50 dark:hover:bg-slate-800"
       >
-        <span className="font-medium text-slate-900">{q}</span>
+        <span className="font-medium text-slate-900 dark:text-slate-100">{q}</span>
         <ChevronDown
           size={18}
-          className={`shrink-0 text-slate-400 transition-transform duration-200 ${
+          className={`shrink-0 text-slate-400 dark:text-slate-500 transition-transform duration-200 ${
             open ? "rotate-180" : ""
           }`}
         />
       </button>
       {open && (
-        <p className="border-t border-slate-100 px-5 py-4 text-sm leading-relaxed text-slate-600">
+        <p className="border-t border-slate-100 dark:border-slate-800 px-5 py-4 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
           {a}
         </p>
       )}

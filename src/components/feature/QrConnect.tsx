@@ -8,7 +8,7 @@ import { QRCodeSVG } from "qrcode.react";
 export function QrImage({ value }: { value: string }) {
   const isImage = value.startsWith("data:image") || value.startsWith("http");
   return (
-    <div className="flex items-center justify-center rounded-xl border border-slate-200 bg-white p-4">
+    <div className="flex items-center justify-center rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-4">
       {isImage ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img src={value} alt="QR Code" className="h-56 w-56" />

@@ -80,7 +80,7 @@ export default function ChannelDetailPage() {
     <div>
       <Link
         href="/dashboard/channels"
-        className="mb-4 inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-800"
+        className="mb-4 inline-flex items-center gap-1 text-sm text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-100"
       >
         <ArrowLeft size={16} /> Canais
       </Link>
@@ -101,12 +101,12 @@ export default function ChannelDetailPage() {
           </CardHeader>
           <CardBody className="space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-sm text-slate-500">Estado atual</span>
+              <span className="text-sm text-slate-500 dark:text-slate-400">Estado atual</span>
               <Badge tone={statusTone(channel.status)}>{channel.status}</Badge>
             </div>
             {channel.instance_name && (
               <div className="flex items-center justify-between">
-                <span className="text-sm text-slate-500">Instância</span>
+                <span className="text-sm text-slate-500 dark:text-slate-400">Instância</span>
                 <span className="font-mono text-sm">{channel.instance_name}</span>
               </div>
             )}
@@ -119,15 +119,15 @@ export default function ChannelDetailPage() {
           </CardHeader>
           <CardBody className="space-y-4">
             {connected ? (
-              <div className="flex items-center gap-3 rounded-xl border border-green-200 bg-green-50 p-4">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-green-100 text-green-600">
+              <div className="flex items-center gap-3 rounded-xl border border-green-200 bg-green-50 p-4 dark:border-green-500/25 dark:bg-green-500/10">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-green-100 text-green-600 dark:bg-green-500/20 dark:text-green-400">
                   <CheckCircle2 size={20} />
                 </span>
                 <div>
-                  <p className="text-sm font-medium text-green-800">
+                  <p className="text-sm font-medium text-green-800 dark:text-green-300">
                     Canal ligado
                   </p>
-                  <p className="text-sm text-green-700">
+                  <p className="text-sm text-green-700 dark:text-green-400">
                     A receber mensagens normalmente.
                   </p>
                 </div>
@@ -153,14 +153,14 @@ export default function ChannelDetailPage() {
                 </Button>
 
                 {waitingQR && !qr && !pairing && (
-                  <p className="text-sm text-slate-500">
+                  <p className="text-sm text-slate-500 dark:text-slate-400">
                     A gerar os códigos de ligação…
                   </p>
                 )}
 
                 {qr && (
                   <div className="space-y-2">
-                    <p className="text-sm font-medium text-slate-700">
+                    <p className="text-sm font-medium text-slate-700 dark:text-slate-200">
                       Leia o QR Code no WhatsApp
                     </p>
                     <QrImage value={qr} />
@@ -168,8 +168,8 @@ export default function ChannelDetailPage() {
                 )}
 
                 {pairing && (
-                  <div className="rounded-lg border border-slate-200 bg-slate-50 p-4 text-center">
-                    <p className="text-sm text-slate-500">
+                  <div className="rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/40 p-4 text-center">
+                    <p className="text-sm text-slate-500 dark:text-slate-400">
                       Ou insira este código no WhatsApp:
                     </p>
                     <p className="mt-1 font-mono text-2xl font-bold tracking-widest">
@@ -179,7 +179,7 @@ export default function ChannelDetailPage() {
                 )}
 
                 {(qr || pairing) && (
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-slate-500 dark:text-slate-400">
                     A aguardar leitura… o estado atualiza automaticamente.
                   </p>
                 )}

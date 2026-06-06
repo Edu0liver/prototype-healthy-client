@@ -37,18 +37,18 @@ export function Dialog({
     >
       <div
         className={cn(
-          "animate-fade-up flex max-h-[90vh] w-full max-w-lg flex-col overflow-hidden rounded-2xl bg-white shadow-2xl shadow-slate-900/10 ring-1 ring-slate-900/5",
+          "animate-fade-up flex max-h-[90vh] w-full max-w-lg flex-col overflow-hidden rounded-2xl bg-white dark:bg-slate-900 shadow-2xl shadow-slate-900/10 ring-1 ring-slate-900/5",
           className,
         )}
         onMouseDown={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center justify-between border-b border-slate-100 px-5 py-4">
-          <h2 className="font-display text-base font-semibold text-slate-900">
+        <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 px-5 py-4">
+          <h2 className="font-display text-base font-semibold text-slate-900 dark:text-slate-100">
             {title}
           </h2>
           <button
             onClick={onClose}
-            className="rounded-lg p-1 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
+            className="rounded-lg p-1 text-slate-400 dark:text-slate-500 transition hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-700 dark:hover:text-slate-200"
             aria-label="Fechar"
           >
             <X size={18} />

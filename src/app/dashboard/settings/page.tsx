@@ -29,7 +29,7 @@ export default function SettingsPage() {
         title="Definições"
         description="White-label e domínios."
       />
-      <div className="mb-6 flex gap-1 border-b border-slate-200">
+      <div className="mb-6 flex gap-1 border-b border-slate-200 dark:border-slate-700">
         {(
           [
             ["branding", "Branding"],
@@ -42,7 +42,7 @@ export default function SettingsPage() {
             className={
               tab === key
                 ? "border-b-2 border-brand px-4 py-2 text-sm font-medium text-brand"
-                : "px-4 py-2 text-sm font-medium text-slate-500 hover:text-slate-800"
+                : "px-4 py-2 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-100"
             }
           >
             {label}
@@ -129,7 +129,7 @@ function BrandingTab() {
                   onChange={(e) =>
                     setForm({ ...form, primary_color: e.target.value })
                   }
-                  className="h-10 w-12 rounded border border-slate-300"
+                  className="h-10 w-12 rounded border border-slate-300 dark:border-slate-600"
                 />
               </div>
             </Field>
@@ -148,7 +148,7 @@ function BrandingTab() {
                   onChange={(e) =>
                     setForm({ ...form, secondary_color: e.target.value })
                   }
-                  className="h-10 w-12 rounded border border-slate-300"
+                  className="h-10 w-12 rounded border border-slate-300 dark:border-slate-600"
                 />
               </div>
             </Field>
@@ -208,7 +208,7 @@ function DomainsTab() {
                 />
               </Field>
             </div>
-            <label className="flex items-center gap-2 pb-2 text-sm text-slate-700">
+            <label className="flex items-center gap-2 pb-2 text-sm text-slate-700 dark:text-slate-200">
               <input
                 type="checkbox"
                 checked={isPrimary}
@@ -231,9 +231,9 @@ function DomainsTab() {
           {isLoading ? (
             <Loading />
           ) : !data || data.length === 0 ? (
-            <p className="text-sm text-slate-500">Sem domínios.</p>
+            <p className="text-sm text-slate-500 dark:text-slate-400">Sem domínios.</p>
           ) : (
-            <div className="divide-y divide-slate-100">
+            <div className="divide-y divide-slate-100 dark:divide-slate-800">
               {data.map((d) => (
                 <div
                   key={d.id}

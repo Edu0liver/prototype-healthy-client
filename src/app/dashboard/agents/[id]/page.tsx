@@ -82,7 +82,7 @@ export default function AgentDetailPage() {
     <div>
       <Link
         href="/dashboard/agents"
-        className="mb-4 inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-800"
+        className="mb-4 inline-flex items-center gap-1 text-sm text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-100"
       >
         <ArrowLeft size={16} /> Agentes
       </Link>
@@ -181,14 +181,14 @@ export default function AgentDetailPage() {
                   }
                 />
               </Field>
-              <label className="flex cursor-pointer items-center gap-2.5 text-sm text-slate-700">
+              <label className="flex cursor-pointer items-center gap-2.5 text-sm text-slate-700 dark:text-slate-200">
                 <input
                   type="checkbox"
                   checked={form.handover_enabled ?? false}
                   onChange={(e) =>
                     setForm({ ...form, handover_enabled: e.target.checked })
                   }
-                  className="h-4 w-4 rounded border-slate-300 accent-brand"
+                  className="h-4 w-4 rounded border-slate-300 dark:border-slate-600 accent-brand"
                 />
                 Permitir transferência para humano (handover)
               </label>
@@ -209,7 +209,7 @@ export default function AgentDetailPage() {
             {allKbs.isLoading ? (
               <Loading label="A carregar bases…" />
             ) : !allKbs.data || allKbs.data.length === 0 ? (
-              <p className="text-sm text-slate-500">
+              <p className="text-sm text-slate-500 dark:text-slate-400">
                 Sem bases. Crie em Conhecimento.
               </p>
             ) : (
@@ -223,8 +223,8 @@ export default function AgentDetailPage() {
                     onClick={() => link.mutate({ kbId: kb.id, link: !linked })}
                     className={`flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-left text-sm transition disabled:opacity-60 ${
                       linked
-                        ? "border-brand/30 bg-brand/5 text-slate-900"
-                        : "border-slate-200 text-slate-600 hover:border-slate-300 hover:bg-slate-50"
+                        ? "border-brand/30 bg-brand/5 text-slate-900 dark:text-slate-100"
+                        : "border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:border-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800"
                     }`}
                   >
                     <span className="truncate">{kb.name}</span>
@@ -232,7 +232,7 @@ export default function AgentDetailPage() {
                       className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md transition ${
                         linked
                           ? "bg-brand text-brand-fg"
-                          : "border border-slate-300 bg-white"
+                          : "border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900"
                       }`}
                     >
                       {linked && <Check size={13} />}

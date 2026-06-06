@@ -141,14 +141,14 @@ export default function BillingPage() {
               ))}
             </div>
           ) : (
-            <p className="text-sm text-slate-500">Sem consumo no período.</p>
+            <p className="text-sm text-slate-500 dark:text-slate-400">Sem consumo no período.</p>
           )}
         </CardBody>
       </Card>
 
       {/* Plans */}
       <div>
-        <h2 className="mb-3 text-sm font-semibold text-slate-700">Planos</h2>
+        <h2 className="mb-3 text-sm font-semibold text-slate-700 dark:text-slate-200">Planos</h2>
         {plans.isLoading ? (
           <Loading />
         ) : plans.isError ? (
@@ -189,7 +189,7 @@ function SubscriptionCard({
       <CardBody className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <span className="text-lg font-semibold text-slate-900">
+            <span className="text-lg font-semibold text-slate-900 dark:text-slate-100">
               {data.plan_name}
             </span>
             <Badge tone={s.tone}>{s.label}</Badge>
@@ -197,7 +197,7 @@ function SubscriptionCard({
               <Badge tone="amber">Cancela no fim do período</Badge>
             )}
           </div>
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
             {formatPrice(data.price_cents, data.currency)} · período{" "}
             {formatDate(data.current_period_start)} →{" "}
             {formatDate(data.current_period_end)}
@@ -226,13 +226,13 @@ function PlanCard({
     <Card className={current ? "ring-2 ring-brand" : undefined}>
       <CardBody className="flex h-full flex-col">
         <div className="flex items-center justify-between">
-          <span className="font-semibold text-slate-900">{plan.name}</span>
+          <span className="font-semibold text-slate-900 dark:text-slate-100">{plan.name}</span>
           {current && <Badge tone="green">Atual</Badge>}
         </div>
-        <p className="mt-1 text-lg font-semibold text-slate-900">
+        <p className="mt-1 text-lg font-semibold text-slate-900 dark:text-slate-100">
           {formatPrice(plan.price_cents, plan.currency)}
         </p>
-        <ul className="mt-3 flex-1 space-y-1 text-xs text-slate-500">
+        <ul className="mt-3 flex-1 space-y-1 text-xs text-slate-500 dark:text-slate-400">
           <li>{plan.quota_ai_messages || "∞"} mensagens IA</li>
           <li>{plan.max_channels || "∞"} canais · {plan.max_agents || "∞"} agentes</li>
           <li>{plan.max_kb || "∞"} bases · {plan.max_seats || "∞"} operadores</li>

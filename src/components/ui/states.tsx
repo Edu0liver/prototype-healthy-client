@@ -3,12 +3,12 @@ import { AlertCircle, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
 
 export function Spinner({ className }: { className?: string }) {
-  return <Loader2 className={cn("animate-spin text-slate-400", className)} />;
+  return <Loader2 className={cn("animate-spin text-slate-400 dark:text-slate-500", className)} />;
 }
 
 export function Loading({ label = "A carregar…" }: { label?: string }) {
   return (
-    <div className="flex items-center justify-center gap-2 py-12 text-sm text-slate-500">
+    <div className="flex items-center justify-center gap-2 py-12 text-sm text-slate-500 dark:text-slate-400">
       <Spinner className="h-4 w-4" />
       {label}
     </div>
@@ -52,16 +52,16 @@ export function EmptyState({
   icon?: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col items-center justify-center gap-4 rounded-xl border border-dashed border-slate-300 bg-slate-50/70 px-6 py-14 text-center">
+    <div className="flex flex-col items-center justify-center gap-4 rounded-xl border border-dashed border-slate-300 dark:border-slate-600 bg-slate-50/70 dark:bg-slate-900/40 px-6 py-14 text-center">
       {icon && (
         <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand/10 text-brand">
           {icon}
         </div>
       )}
       <div>
-        <p className="font-display font-semibold text-slate-900">{title}</p>
+        <p className="font-display font-semibold text-slate-900 dark:text-slate-100">{title}</p>
         {description && (
-          <p className="mt-1 text-sm text-slate-500">{description}</p>
+          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{description}</p>
         )}
       </div>
       {action}

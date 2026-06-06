@@ -25,13 +25,15 @@ function Stat({
 }) {
   return (
     <Link href={href}>
-      <Card className="transition hover:shadow-md">
+      <Card className="group transition duration-200 hover:-translate-y-1 hover:shadow-md">
         <CardBody className="flex items-center gap-4">
-          <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-brand/10 text-brand">
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand/10 text-brand transition duration-200 group-hover:bg-brand group-hover:text-brand-fg">
             {icon}
           </div>
           <div>
-            <p className="text-2xl font-semibold text-slate-900">{value}</p>
+            <p className="font-display text-2xl font-semibold tabular-nums text-slate-900">
+              {value}
+            </p>
             <p className="text-sm text-slate-500">{label}</p>
           </div>
         </CardBody>

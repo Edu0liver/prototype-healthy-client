@@ -411,7 +411,7 @@ export default function LandingPage() {
             <Link href="/signup">
               <Button
                 variant="secondary"
-                className="h-12 bg-white dark:bg-slate-900 px-7 text-base text-brand hover:bg-white/90"
+                className="h-12 bg-white px-7 text-base text-brand hover:bg-white/90 dark:bg-white dark:text-brand dark:hover:bg-white/90"
               >
                 Criar conta
               </Button>

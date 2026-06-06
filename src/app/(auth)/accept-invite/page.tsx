@@ -5,7 +5,7 @@ import { Suspense, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardBody } from "@/components/ui/card";
-import { Field, Input } from "@/components/ui/field";
+import { Field, Input, PasswordInput } from "@/components/ui/field";
 import { useToast } from "@/components/ui/toast";
 import { authService } from "@/lib/api/auth";
 import { ApiClientError } from "@/lib/api/client";
@@ -45,7 +45,9 @@ function AcceptInviteForm() {
   return (
     <Card>
       <CardBody>
-        <h2 className="mb-4 text-lg font-semibold">Aceitar convite</h2>
+        <h2 className="mb-4 font-display text-lg font-semibold text-slate-900">
+          Aceitar convite
+        </h2>
         <form onSubmit={onSubmit} className="space-y-4">
           <Field label="Token do convite">
             <Input
@@ -55,8 +57,8 @@ function AcceptInviteForm() {
             />
           </Field>
           <Field label="Defina a senha" hint="Mínimo 8 caracteres.">
-            <Input
-              type="password"
+            <PasswordInput
+              autoComplete="new-password"
               required
               minLength={8}
               value={password}

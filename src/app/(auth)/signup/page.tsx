@@ -6,7 +6,7 @@ import { Suspense, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardBody } from "@/components/ui/card";
-import { Field, Input } from "@/components/ui/field";
+import { Field, Input, PasswordInput } from "@/components/ui/field";
 import { useToast } from "@/components/ui/toast";
 import { authService } from "@/lib/api/auth";
 import { billingService } from "@/lib/api/billing";
@@ -91,7 +91,9 @@ function SignupForm() {
   return (
     <Card>
       <CardBody>
-        <h2 className="mb-1 text-lg font-semibold">Criar empresa</h2>
+        <h2 className="mb-1 font-display text-lg font-semibold text-slate-900">
+          Criar empresa
+        </h2>
         {plan && (
           <p className="mb-3 rounded-lg bg-brand/10 px-3 py-2 text-sm text-brand">
             Plano selecionado: <strong className="capitalize">{plan}</strong> — após
@@ -120,19 +122,24 @@ function SignupForm() {
           </Field>
           <hr className="border-slate-100" />
           <Field label="O seu nome">
-            <Input value={name} onChange={(e) => setName(e.target.value)} />
+            <Input
+              autoComplete="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
           </Field>
           <Field label="E-mail (admin)">
             <Input
               type="email"
+              autoComplete="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </Field>
           <Field label="Senha" hint="Mínimo 8 caracteres.">
-            <Input
-              type="password"
+            <PasswordInput
+              autoComplete="new-password"
               required
               minLength={8}
               value={password}

@@ -6,7 +6,7 @@ import { Suspense, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardBody } from "@/components/ui/card";
-import { Field, Input } from "@/components/ui/field";
+import { Field, Input, PasswordInput } from "@/components/ui/field";
 import { useToast } from "@/components/ui/toast";
 import { authService } from "@/lib/api/auth";
 import { ApiClientError } from "@/lib/api/client";
@@ -41,7 +41,9 @@ function LoginForm() {
   return (
     <Card>
       <CardBody>
-        <h2 className="mb-4 text-lg font-semibold">Entrar</h2>
+        <h2 className="mb-4 font-display text-lg font-semibold text-slate-900">
+          Entrar
+        </h2>
         <form onSubmit={onSubmit} className="space-y-4">
           <Field label="E-mail">
             <Input
@@ -54,8 +56,7 @@ function LoginForm() {
             />
           </Field>
           <Field label="Senha">
-            <Input
-              type="password"
+            <PasswordInput
               autoComplete="current-password"
               required
               value={password}

@@ -1,6 +1,7 @@
 "use client";
 
-import { forwardRef } from "react";
+import { Eye, EyeOff } from "lucide-react";
+import { forwardRef, useState } from "react";
 
 import { cn } from "@/lib/utils/cn";
 
@@ -29,6 +30,33 @@ export const Input = forwardRef<
   <input ref={ref} className={cn(baseControl, className)} {...props} />
 ));
 Input.displayName = "Input";
+
+// PasswordInput wraps Input with a show/hide toggle (UX: password-toggle).
+export const PasswordInput = forwardRef<
+  HTMLInputElement,
+  Omit<React.InputHTMLAttributes<HTMLInputElement>, "type">
+>(({ className, ...props }, ref) => {
+  const [show, setShow] = useState(false);
+  return (
+    <div className="relative">
+      <input
+        ref={ref}
+        type={show ? "text" : "password"}
+        className={cn(baseControl, "pr-10", className)}
+        {...props}
+      />
+      <button
+        type="button"
+        onClick={() => setShow((v) => !v)}
+        aria-label={show ? "Ocultar senha" : "Mostrar senha"}
+        className="absolute inset-y-0 right-0 flex w-10 items-center justify-center text-slate-400 transition hover:text-slate-600 focus:outline-none focus-visible:text-brand"
+      >
+        {show ? <EyeOff size={16} /> : <Eye size={16} />}
+      </button>
+    </div>
+  );
+});
+PasswordInput.displayName = "PasswordInput";
 
 export const Textarea = forwardRef<
   HTMLTextAreaElement,

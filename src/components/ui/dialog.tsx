@@ -30,27 +30,31 @@ export function Dialog({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 p-4"
+      role="dialog"
+      aria-modal="true"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 p-4 backdrop-blur-sm"
       onMouseDown={onClose}
     >
       <div
         className={cn(
-          "w-full max-w-lg rounded-xl bg-white shadow-xl",
+          "animate-fade-up flex max-h-[90vh] w-full max-w-lg flex-col overflow-hidden rounded-2xl bg-white shadow-2xl shadow-slate-900/10 ring-1 ring-slate-900/5",
           className,
         )}
         onMouseDown={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between border-b border-slate-100 px-5 py-4">
-          <h2 className="text-base font-semibold text-slate-900">{title}</h2>
+          <h2 className="font-display text-base font-semibold text-slate-900">
+            {title}
+          </h2>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-700"
+            className="rounded-lg p-1 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
             aria-label="Fechar"
           >
             <X size={18} />
           </button>
         </div>
-        <div className="px-5 py-4">{children}</div>
+        <div className="overflow-y-auto px-5 py-4">{children}</div>
       </div>
     </div>
   );

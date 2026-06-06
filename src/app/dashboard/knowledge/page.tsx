@@ -69,13 +69,20 @@ export default function KnowledgePage() {
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {data.map((kb) => (
             <Link key={kb.id} href={`/dashboard/knowledge/${kb.id}`}>
-              <Card className="transition hover:shadow-md">
+              <Card className="group h-full transition duration-200 hover:-translate-y-1 hover:shadow-md">
                 <CardBody>
-                  <p className="font-medium text-slate-900">{kb.name}</p>
+                  <div className="mb-2 flex items-center gap-2.5">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand/10 text-brand transition duration-200 group-hover:bg-brand group-hover:text-brand-fg">
+                      <Library size={16} />
+                    </span>
+                    <p className="truncate font-medium text-slate-900">
+                      {kb.name}
+                    </p>
+                  </div>
                   <p className="line-clamp-2 text-sm text-slate-500">
                     {kb.description || "Sem descrição"}
                   </p>
-                  <p className="mt-2 text-xs text-slate-400">
+                  <p className="mt-2 font-mono text-xs text-slate-400">
                     {kb.embedding_model || "text-embedding-3-small"}
                   </p>
                 </CardBody>

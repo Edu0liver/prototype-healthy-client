@@ -1,6 +1,6 @@
 "use client";
 
-import { Plug, Plus, Trash2 } from "lucide-react";
+import { ArrowRight, Bot, Plug, Plus, Radio, Trash2 } from "lucide-react";
 import { useState } from "react";
 
 import { PageHeader } from "@/components/layout/PageHeader";
@@ -93,18 +93,27 @@ export default function AutomationsPage() {
       ) : (
         <div className="space-y-3">
           {data.map((a) => (
-            <Card key={a.id}>
-              <CardBody className="flex items-center justify-between gap-4">
-                <div className="flex items-center gap-3">
+            <Card
+              key={a.id}
+              className="transition duration-200 hover:shadow-md"
+            >
+              <CardBody className="flex flex-wrap items-center justify-between gap-4">
+                <div className="flex flex-wrap items-center gap-3">
                   <Badge tone={a.is_active ? "green" : "neutral"}>
                     {a.is_active ? "Ativa" : "Inativa"}
                   </Badge>
-                  <span className="text-sm">
-                    <strong>{channelName(a.channel_id)}</strong>
-                    {" → "}
-                    {agentName(a.agent_id)}
-                  </span>
-                  <span className="text-xs text-slate-400">
+                  <div className="flex items-center gap-2 text-sm">
+                    <span className="inline-flex items-center gap-1.5 rounded-lg bg-slate-100 px-2 py-1 font-medium text-slate-700">
+                      <Radio size={14} className="text-slate-400" />
+                      {channelName(a.channel_id)}
+                    </span>
+                    <ArrowRight size={14} className="text-slate-400" />
+                    <span className="inline-flex items-center gap-1.5 rounded-lg bg-brand/10 px-2 py-1 font-medium text-brand">
+                      <Bot size={14} />
+                      {agentName(a.agent_id)}
+                    </span>
+                  </div>
+                  <span className="text-xs tabular-nums text-slate-400">
                     debounce {a.debounce_seconds}s
                   </span>
                 </div>
@@ -122,9 +131,17 @@ export default function AutomationsPage() {
                     {a.is_active ? "Desativar" : "Ativar"}
                   </Button>
                   <button
-                    onClick={() => remove.mutate(a.id)}
-                    className="text-slate-400 hover:text-red-600"
+                    onClick={() => {
+                      if (
+                        confirm(
+                          `Eliminar a automação ${channelName(a.channel_id)} → ${agentName(a.agent_id)}?`,
+                        )
+                      )
+                        remove.mutate(a.id);
+                    }}
+                    className="rounded-lg p-2 text-slate-400 transition hover:bg-red-50 hover:text-red-600"
                     title="Eliminar"
+                    aria-label="Eliminar automação"
                   >
                     <Trash2 size={16} />
                   </button>

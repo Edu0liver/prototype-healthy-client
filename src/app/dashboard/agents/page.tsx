@@ -73,16 +73,25 @@ export default function AgentsPage() {
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {data.map((a) => (
             <Link key={a.id} href={`/dashboard/agents/${a.id}`}>
-              <Card className="transition hover:shadow-md">
+              <Card className="group h-full transition duration-200 hover:-translate-y-1 hover:shadow-md">
                 <CardBody>
-                  <div className="mb-2 flex items-center justify-between">
-                    <span className="font-medium text-slate-900">{a.name}</span>
+                  <div className="mb-2 flex items-center justify-between gap-2">
+                    <div className="flex min-w-0 items-center gap-2.5">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand/10 text-brand transition duration-200 group-hover:bg-brand group-hover:text-brand-fg">
+                        <Bot size={16} />
+                      </span>
+                      <span className="truncate font-medium text-slate-900">
+                        {a.name}
+                      </span>
+                    </div>
                     <Badge tone={statusTone(a.status)}>{a.status}</Badge>
                   </div>
                   <p className="line-clamp-2 text-sm text-slate-500">
                     {a.system_prompt}
                   </p>
-                  <p className="mt-2 text-xs text-slate-400">{a.model}</p>
+                  <p className="mt-2 font-mono text-xs text-slate-400">
+                    {a.model}
+                  </p>
                 </CardBody>
               </Card>
             </Link>

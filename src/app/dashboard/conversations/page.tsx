@@ -1,6 +1,6 @@
 "use client";
 
-import { MessagesSquare } from "lucide-react";
+import { ChevronRight, MessagesSquare, User } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -71,16 +71,25 @@ export default function ConversationsPage() {
           <div className="divide-y divide-slate-100">
             {data.map((c) => (
               <Link key={c.id} href={`/dashboard/conversations/${c.id}`}>
-                <div className="flex items-center justify-between px-5 py-4 transition hover:bg-slate-50">
-                  <div className="flex items-center gap-3">
-                    <Badge tone={statusTone(c.state)}>{c.state}</Badge>
-                    <span className="font-mono text-sm text-slate-700">
+                <div className="group flex items-center justify-between gap-3 px-5 py-4 transition hover:bg-slate-50">
+                  <div className="flex min-w-0 items-center gap-3">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-400">
+                      <User size={16} />
+                    </span>
+                    <span className="truncate font-mono text-sm text-slate-700">
                       {c.contact_id.slice(0, 8)}
                     </span>
+                    <Badge tone={statusTone(c.state)}>{c.state}</Badge>
                   </div>
-                  <span className="text-xs text-slate-400">
-                    {relativeTime(c.last_message_at ?? c.opened_at)}
-                  </span>
+                  <div className="flex shrink-0 items-center gap-2">
+                    <span className="text-xs tabular-nums text-slate-400">
+                      {relativeTime(c.last_message_at ?? c.opened_at)}
+                    </span>
+                    <ChevronRight
+                      size={16}
+                      className="text-slate-300 transition group-hover:translate-x-0.5 group-hover:text-slate-400"
+                    />
+                  </div>
                 </div>
               </Link>
             ))}

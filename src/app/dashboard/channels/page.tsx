@@ -69,12 +69,17 @@ export default function ChannelsPage() {
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {data.map((ch) => (
             <Link key={ch.id} href={`/dashboard/channels/${ch.id}`}>
-              <Card className="transition hover:shadow-md">
+              <Card className="group h-full transition duration-200 hover:-translate-y-1 hover:shadow-md">
                 <CardBody>
-                  <div className="mb-2 flex items-center justify-between">
-                    <span className="font-medium text-slate-900">
-                      {ch.name || ch.external_account_id || "Canal"}
-                    </span>
+                  <div className="mb-2 flex items-center justify-between gap-2">
+                    <div className="flex min-w-0 items-center gap-2.5">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand/10 text-brand transition duration-200 group-hover:bg-brand group-hover:text-brand-fg">
+                        <Radio size={16} />
+                      </span>
+                      <span className="truncate font-medium text-slate-900">
+                        {ch.name || ch.external_account_id || "Canal"}
+                      </span>
+                    </div>
                     <Badge tone={statusTone(ch.status)}>{ch.status}</Badge>
                   </div>
                   <p className="text-sm capitalize text-slate-500">{ch.type}</p>

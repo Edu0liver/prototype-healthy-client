@@ -1,4 +1,4 @@
-import { Loader2 } from "lucide-react";
+import { AlertCircle, Loader2 } from "lucide-react";
 
 import { cn } from "@/lib/utils/cn";
 
@@ -24,11 +24,14 @@ export function ErrorState({
 }) {
   return (
     <div className="flex flex-col items-center justify-center gap-3 py-12 text-center">
+      <div className="flex h-11 w-11 items-center justify-center rounded-full bg-red-50 text-red-500 ring-1 ring-inset ring-red-100">
+        <AlertCircle size={22} />
+      </div>
       <p className="text-sm text-red-600">{message}</p>
       {onRetry && (
         <button
           onClick={onRetry}
-          className="text-sm font-medium text-brand hover:underline"
+          className="rounded-lg px-3 py-1.5 text-sm font-medium text-brand transition hover:bg-brand/5"
         >
           Tentar de novo
         </button>
@@ -49,10 +52,14 @@ export function EmptyState({
   icon?: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col items-center justify-center gap-3 rounded-xl border border-dashed border-slate-300 bg-slate-50 py-14 text-center">
-      {icon && <div className="text-slate-400">{icon}</div>}
+    <div className="flex flex-col items-center justify-center gap-4 rounded-xl border border-dashed border-slate-300 bg-slate-50/70 px-6 py-14 text-center">
+      {icon && (
+        <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand/10 text-brand">
+          {icon}
+        </div>
+      )}
       <div>
-        <p className="font-medium text-slate-900">{title}</p>
+        <p className="font-display font-semibold text-slate-900">{title}</p>
         {description && (
           <p className="mt-1 text-sm text-slate-500">{description}</p>
         )}

@@ -1,6 +1,13 @@
 "use client";
 
-import { ArrowLeft, CheckCircle, Send, UserCheck, Undo2 } from "lucide-react";
+import {
+  ArrowLeft,
+  CheckCircle,
+  MessagesSquare,
+  Send,
+  UserCheck,
+  Undo2,
+} from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -113,9 +120,10 @@ export default function ConversationDetailPage() {
           ) : messages.data && messages.data.length > 0 ? (
             messages.data.map((m) => <MessageBubble key={m.id} msg={m} />)
           ) : (
-            <p className="py-8 text-center text-sm text-slate-400">
-              Sem mensagens.
-            </p>
+            <div className="flex flex-col items-center justify-center gap-2 py-12 text-center text-slate-400">
+              <MessagesSquare size={28} />
+              <p className="text-sm">Sem mensagens nesta conversa.</p>
+            </div>
           )}
           <div ref={bottomRef} />
         </div>
@@ -133,7 +141,7 @@ export default function ConversationDetailPage() {
                 ? "Escreva uma resposta…"
                 : "Assuma a conversa para responder"
             }
-            className="flex-1 rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30 disabled:bg-slate-50"
+            className="flex-1 rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30 disabled:cursor-not-allowed disabled:bg-slate-50"
           />
           <Button type="submit" disabled={!isHuman} loading={reply.isPending}>
             <Send size={16} /> Enviar

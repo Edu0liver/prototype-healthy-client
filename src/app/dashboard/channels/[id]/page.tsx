@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, QrCode, Trash2 } from "lucide-react";
+import { ArrowLeft, CheckCircle2, QrCode, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
@@ -119,9 +119,19 @@ export default function ChannelDetailPage() {
           </CardHeader>
           <CardBody className="space-y-4">
             {connected ? (
-              <p className="text-sm text-green-700">
-                ✓ Canal ligado e a receber mensagens.
-              </p>
+              <div className="flex items-center gap-3 rounded-xl border border-green-200 bg-green-50 p-4">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-green-100 text-green-600">
+                  <CheckCircle2 size={20} />
+                </span>
+                <div>
+                  <p className="text-sm font-medium text-green-800">
+                    Canal ligado
+                  </p>
+                  <p className="text-sm text-green-700">
+                    A receber mensagens normalmente.
+                  </p>
+                </div>
+              </div>
             ) : (
               <>
                 <Field

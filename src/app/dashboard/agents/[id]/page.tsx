@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, Trash2 } from "lucide-react";
+import { ArrowLeft, Check, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -181,13 +181,14 @@ export default function AgentDetailPage() {
                   }
                 />
               </Field>
-              <label className="flex items-center gap-2 text-sm text-slate-700">
+              <label className="flex cursor-pointer items-center gap-2.5 text-sm text-slate-700">
                 <input
                   type="checkbox"
                   checked={form.handover_enabled ?? false}
                   onChange={(e) =>
                     setForm({ ...form, handover_enabled: e.target.checked })
                   }
+                  className="h-4 w-4 rounded border-slate-300 accent-brand"
                 />
                 Permitir transferência para humano (handover)
               </label>
@@ -215,20 +216,28 @@ export default function AgentDetailPage() {
               allKbs.data.map((kb) => {
                 const linked = linkedIds.has(kb.id);
                 return (
-                  <label
+                  <button
                     key={kb.id}
-                    className="flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-sm"
+                    type="button"
+                    disabled={link.isPending}
+                    onClick={() => link.mutate({ kbId: kb.id, link: !linked })}
+                    className={`flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-left text-sm transition disabled:opacity-60 ${
+                      linked
+                        ? "border-brand/30 bg-brand/5 text-slate-900"
+                        : "border-slate-200 text-slate-600 hover:border-slate-300 hover:bg-slate-50"
+                    }`}
                   >
-                    <input
-                      type="checkbox"
-                      checked={linked}
-                      disabled={link.isPending}
-                      onChange={() =>
-                        link.mutate({ kbId: kb.id, link: !linked })
-                      }
-                    />
-                    {kb.name}
-                  </label>
+                    <span className="truncate">{kb.name}</span>
+                    <span
+                      className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md transition ${
+                        linked
+                          ? "bg-brand text-brand-fg"
+                          : "border border-slate-300 bg-white"
+                      }`}
+                    >
+                      {linked && <Check size={13} />}
+                    </span>
+                  </button>
                 );
               })
             )}

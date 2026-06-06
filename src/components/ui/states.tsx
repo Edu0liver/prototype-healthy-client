@@ -24,7 +24,7 @@ export function ErrorState({
 }) {
   return (
     <div className="flex flex-col items-center justify-center gap-3 py-12 text-center">
-      <div className="flex h-11 w-11 items-center justify-center rounded-full bg-red-50 text-red-500 ring-1 ring-inset ring-red-100">
+      <div className="flex h-11 w-11 items-center justify-center rounded-full bg-red-50 text-red-500 ring-1 ring-inset ring-red-100 dark:bg-red-500/15 dark:text-red-400 dark:ring-red-500/25">
         <AlertCircle size={22} />
       </div>
       <p className="text-sm text-red-600">{message}</p>

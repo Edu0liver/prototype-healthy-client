@@ -15,7 +15,7 @@ export function MessageBubble({ msg }: { msg: Message }) {
       className={cn("flex gap-2", fromContact ? "justify-start" : "justify-end")}
     >
       {fromContact && (
-        <div className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-slate-200 text-slate-600 dark:text-slate-300">
+        <div className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-slate-200 text-slate-600 dark:bg-slate-700 dark:text-slate-300">
           <Icon size={15} />
         </div>
       )}

@@ -87,7 +87,7 @@ export default function ConversationsPage() {
                     </span>
                     <ChevronRight
                       size={16}
-                      className="text-slate-300 transition group-hover:translate-x-0.5 group-hover:text-slate-400"
+                      className="text-slate-300 transition group-hover:translate-x-0.5 group-hover:text-slate-400 dark:text-slate-600 dark:group-hover:text-slate-400"
                     />
                   </div>
                 </div>

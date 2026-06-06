@@ -38,7 +38,7 @@ export function UsageBar({
       </div>
       <div className="h-2 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
         <div
-          className={cn("h-full rounded-full transition-all", unlimited ? "bg-slate-200" : barColor)}
+          className={cn("h-full rounded-full transition-all", unlimited ? "bg-slate-200 dark:bg-slate-600" : barColor)}
           style={{ width: unlimited ? "100%" : `${pct}%` }}
         />
       </div>

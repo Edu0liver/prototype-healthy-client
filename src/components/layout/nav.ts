@@ -8,6 +8,7 @@ import {
   Radio,
   Settings,
   Library,
+  Users,
 } from "lucide-react";
 
 import type { Role } from "@/types/enums";
@@ -46,6 +47,12 @@ export const NAV: NavItem[] = [
     href: "/dashboard/automations",
     label: "Automações",
     icon: Plug,
+    roles: ["admin"],
+  },
+  {
+    href: "/dashboard/users",
+    label: "Utilizadores",
+    icon: Users,
     roles: ["admin"],
   },
   {

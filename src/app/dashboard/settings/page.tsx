@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 
 import { PageHeader } from "@/components/layout/PageHeader";
 import { RoleGuard } from "@/components/layout/RoleGuard";
-import { Badge, statusTone } from "@/components/ui/badge";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardBody, CardHeader, CardTitle } from "@/components/ui/card";
-import { Field, Input, Select } from "@/components/ui/field";
+import { Field, Input } from "@/components/ui/field";
 import { Loading } from "@/components/ui/states";
 import { useToast } from "@/components/ui/toast";
 import { ApiClientError } from "@/lib/api/client";
@@ -15,13 +15,10 @@ import {
   useAddDomain,
   useBranding,
   useDomains,
-  useInviteUser,
   useUpdateBranding,
-  useUsers,
 } from "@/lib/hooks/useTenant";
-import type { Role } from "@/types/enums";
 
-type Tab = "branding" | "domains" | "users";
+type Tab = "branding" | "domains";
 
 export default function SettingsPage() {
   const [tab, setTab] = useState<Tab>("branding");
@@ -30,14 +27,13 @@ export default function SettingsPage() {
     <RoleGuard roles={["admin"]}>
       <PageHeader
         title="Definições"
-        description="White-label, domínios e utilizadores."
+        description="White-label e domínios."
       />
       <div className="mb-6 flex gap-1 border-b border-slate-200">
         {(
           [
             ["branding", "Branding"],
             ["domains", "Domínios"],
-            ["users", "Utilizadores"],
           ] as [Tab, string][]
         ).map(([key, label]) => (
           <button
@@ -56,7 +52,6 @@ export default function SettingsPage() {
 
       {tab === "branding" && <BrandingTab />}
       {tab === "domains" && <DomainsTab />}
-      {tab === "users" && <UsersTab />}
     </RoleGuard>
   );
 }
@@ -250,102 +245,6 @@ function DomainsTab() {
                     <Badge tone={d.verified_at ? "green" : "amber"}>
                       {d.verified_at ? "Verificado" : "Pendente"}
                     </Badge>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </CardBody>
-      </Card>
-    </div>
-  );
-}
-
-function UsersTab() {
-  const { data, isLoading } = useUsers();
-  const invite = useInviteUser();
-  const toast = useToast();
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [role, setRole] = useState<Role>("operator");
-
-  async function submit(e: React.FormEvent) {
-    e.preventDefault();
-    try {
-      await invite.mutateAsync({ email, name, role });
-      toast.success("Convite enviado");
-      setEmail("");
-      setName("");
-    } catch (err) {
-      toast.error(err instanceof ApiClientError ? err.message : "Erro");
-    }
-  }
-
-  return (
-    <div className="max-w-2xl space-y-6">
-      <Card>
-        <CardHeader>
-          <CardTitle>Convidar utilizador</CardTitle>
-        </CardHeader>
-        <CardBody>
-          <form onSubmit={submit} className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
-              <Field label="E-mail">
-                <Input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </Field>
-              <Field label="Nome">
-                <Input value={name} onChange={(e) => setName(e.target.value)} />
-              </Field>
-            </div>
-            <Field label="Papel">
-              <Select
-                value={role}
-                onChange={(e) => setRole(e.target.value as Role)}
-              >
-                <option value="admin">Administrador</option>
-                <option value="operator">Operador</option>
-                <option value="knowledge_manager">Gestor de conhecimento</option>
-              </Select>
-            </Field>
-            <div className="flex justify-end">
-              <Button type="submit" loading={invite.isPending}>
-                Convidar
-              </Button>
-            </div>
-          </form>
-        </CardBody>
-      </Card>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>Utilizadores</CardTitle>
-        </CardHeader>
-        <CardBody>
-          {isLoading ? (
-            <Loading />
-          ) : !data || data.length === 0 ? (
-            <p className="text-sm text-slate-500">Sem utilizadores.</p>
-          ) : (
-            <div className="divide-y divide-slate-100">
-              {data.map((u) => (
-                <div
-                  key={u.id}
-                  className="flex items-center justify-between py-3"
-                >
-                  <div>
-                    <p className="text-sm font-medium text-slate-900">
-                      {u.name || u.email}
-                    </p>
-                    <p className="text-xs text-slate-400">{u.email}</p>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Badge tone="neutral">{u.role}</Badge>
-                    <Badge tone={statusTone(u.status)}>{u.status}</Badge>
                   </div>
                 </div>
               ))}

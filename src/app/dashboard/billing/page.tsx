@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { CreditCard } from "lucide-react";
 
 import { PageHeader } from "@/components/layout/PageHeader";
@@ -13,6 +15,7 @@ import { ApiClientError } from "@/lib/api/client";
 import {
   useCheckout,
   usePlans,
+  usePortal,
   useSubscription,
   useUsage,
 } from "@/lib/hooks/useBilling";
@@ -55,10 +58,21 @@ export default function BillingPage() {
   const usage = useUsage();
   const plans = usePlans();
   const checkout = useCheckout();
+  const portal = usePortal();
   const toast = useToast();
+  const searchParams = useSearchParams();
 
-  const noSubscription =
-    sub.isError && sub.error instanceof ApiClientError && sub.error.status === 404;
+  useEffect(() => {
+    const result = searchParams.get("checkout");
+    if (result === "success") {
+      toast.success("Subscrição ativada com sucesso!");
+      sub.refetch();
+    } else if (result === "canceled") {
+      toast.error("Checkout cancelado.");
+    }
+  }, []);
+
+  const noSubscription = !sub.isLoading && !sub.isError && sub.data?.active === false;
 
   async function subscribe(planCode: string) {
     try {
@@ -91,8 +105,17 @@ export default function BillingPage() {
         </Card>
       ) : sub.isError ? (
         <ErrorState onRetry={() => sub.refetch()} />
-      ) : sub.data ? (
-        <SubscriptionCard data={sub.data} />
+      ) : sub.data?.active ? (
+        <SubscriptionCard
+          data={sub.data}
+          onManage={() =>
+            portal.mutate(undefined, {
+              onError: (err) =>
+                toast.error(err instanceof ApiClientError ? err.message : "Erro ao abrir portal"),
+            })
+          }
+          managing={portal.isPending}
+        />
       ) : null}
 
       {/* Usage */}
@@ -132,7 +155,10 @@ export default function BillingPage() {
           <ErrorState onRetry={() => plans.refetch()} />
         ) : (
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {(plans.data ?? []).map((plan) => (
+            {([...(plans.data ?? [])].sort((a, b) => {
+              const order: Record<string, number> = { starter: 0, pro: 1, enterprise: 2 };
+              return (order[a.code] ?? 99) - (order[b.code] ?? 99);
+            })).map((plan) => (
               <PlanCard
                 key={plan.code}
                 plan={plan}
@@ -148,7 +174,15 @@ export default function BillingPage() {
   );
 }
 
-function SubscriptionCard({ data }: { data: Subscription }) {
+function SubscriptionCard({
+  data,
+  onManage,
+  managing,
+}: {
+  data: Subscription;
+  onManage: () => void;
+  managing: boolean;
+}) {
   const s = STATUS[data.status] ?? { tone: "neutral" as const, label: data.status };
   return (
     <Card>
@@ -169,6 +203,9 @@ function SubscriptionCard({ data }: { data: Subscription }) {
             {formatDate(data.current_period_end)}
           </p>
         </div>
+        <Button variant="outline" disabled={managing} onClick={onManage}>
+          {managing ? "A redirecionar…" : "Gerir subscrição"}
+        </Button>
       </CardBody>
     </Card>
   );
@@ -200,14 +237,24 @@ function PlanCard({
           <li>{plan.max_channels || "∞"} canais · {plan.max_agents || "∞"} agentes</li>
           <li>{plan.max_kb || "∞"} bases · {plan.max_seats || "∞"} operadores</li>
         </ul>
-        <Button
-          className="mt-4 w-full"
-          variant={current ? "secondary" : "primary"}
-          disabled={current || !plan.purchasable || pending}
-          onClick={onSubscribe}
-        >
-          {current ? "Plano atual" : plan.purchasable ? "Assinar" : "Indisponível"}
-        </Button>
+        {plan.code === "enterprise" ? (
+          <Button
+            className="mt-4 w-full"
+            variant="secondary"
+            onClick={() => { window.location.href = "mailto:contato@lumia.ai"; }}
+          >
+            Falar conosco
+          </Button>
+        ) : (
+          <Button
+            className="mt-4 w-full"
+            variant={current ? "secondary" : "primary"}
+            disabled={current || !plan.purchasable || pending}
+            onClick={onSubscribe}
+          >
+            {current ? "Plano atual" : plan.purchasable ? "Assinar" : "Indisponível"}
+          </Button>
+        )}
       </CardBody>
     </Card>
   );

@@ -3,6 +3,7 @@ import type {
   CheckoutResponse,
   Plan,
   PlansList,
+  PortalResponse,
   Subscription,
   UsageResponse,
 } from "@/types/api";
@@ -17,6 +18,7 @@ export const billingService = {
   listPublicPlans: () => api.get<PlansList>("/plans").then((r) => r.plans),
   checkout: (body: CheckoutRequest) =>
     api.post<CheckoutResponse>("/billing/checkout", body),
+  portal: () => api.post<PortalResponse>("/billing/portal", {}),
 };
 
 export type { Plan };

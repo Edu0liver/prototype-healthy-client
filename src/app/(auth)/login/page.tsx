@@ -53,7 +53,7 @@ function LoginForm() {
               placeholder="voce@empresa.com"
             />
           </Field>
-          <Field label="Palavra-passe">
+          <Field label="Senha">
             <Input
               type="password"
               autoComplete="current-password"

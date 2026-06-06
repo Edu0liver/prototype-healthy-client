@@ -130,7 +130,7 @@ function SignupForm() {
               onChange={(e) => setEmail(e.target.value)}
             />
           </Field>
-          <Field label="Palavra-passe" hint="Mínimo 8 caracteres.">
+          <Field label="Senha" hint="Mínimo 8 caracteres.">
             <Input
               type="password"
               required

@@ -47,7 +47,7 @@ function formatPrice(cents: number, currency: string): string {
 
 function planCta(plan: Plan): { label: string; href: string } {
   // Custom/enterprise (price 0 or not self-serve purchasable) → talk to sales.
-  if (plan.code === "enterprise" || plan.price_cents === 0 || !plan.purchasable)
+  if (plan.code === "enterprise")
     return { label: "Falar com vendas", href: "mailto:vendas@lumia.app" };
   return { label: "Assinar", href: `/signup?plan=${plan.code}` };
 }
@@ -114,8 +114,11 @@ export default function LandingPage() {
         ) : plans.isError ? (
           <ErrorState onRetry={() => plans.refetch()} />
         ) : (
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {(plans.data ?? []).map((plan) => {
+          <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {([...(plans.data ?? [])].sort((a, b) => {
+              const order: Record<string, number> = { starter: 0, pro: 1, enterprise: 2 };
+              return (order[a.code] ?? 99) - (order[b.code] ?? 99);
+            })).map((plan) => {
               const cta = planCta(plan);
               const highlight = plan.code === "pro";
               return (

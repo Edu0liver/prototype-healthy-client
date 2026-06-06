@@ -42,3 +42,13 @@ export function useCheckout() {
     },
   });
 }
+
+// usePortal opens the Stripe Billing Portal (upgrade/downgrade/cancel/invoices).
+export function usePortal() {
+  return useMutation({
+    mutationFn: () => billingService.portal(),
+    onSuccess: (res) => {
+      if (res.portal_url) window.location.href = res.portal_url;
+    },
+  });
+}

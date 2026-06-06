@@ -300,6 +300,7 @@ export type DomainsList = { domains: Domain[] };
 // ---- Billing ---------------------------------------------------------------
 
 export interface Subscription {
+  active: boolean;
   plan_code: string;
   plan_name: string;
   status: SubscriptionStatus;
@@ -348,4 +349,8 @@ export interface CheckoutRequest {
 
 export interface CheckoutResponse {
   checkout_url: string;
+}
+
+export interface PortalResponse {
+  portal_url: string;
 }

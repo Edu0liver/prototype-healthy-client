@@ -54,7 +54,7 @@ function AcceptInviteForm() {
               onChange={(e) => setToken(e.target.value)}
             />
           </Field>
-          <Field label="Defina a palavra-passe" hint="Mínimo 8 caracteres.">
+          <Field label="Defina a senha" hint="Mínimo 8 caracteres.">
             <Input
               type="password"
               required
